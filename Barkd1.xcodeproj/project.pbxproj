@@ -8,22 +8,30 @@
 
 /* Begin PBXBuildFile section */
 		D0B3FE591E7C242200D5BF86 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0B3FE581E7C242200D5BF86 /* AppDelegate.swift */; };
-		D0B3FE5B1E7C242200D5BF86 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0B3FE5A1E7C242200D5BF86 /* ViewController.swift */; };
+		D0B3FE5B1E7C242200D5BF86 /* LogInVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0B3FE5A1E7C242200D5BF86 /* LogInVC.swift */; };
 		D0B3FE5E1E7C242200D5BF86 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D0B3FE5C1E7C242200D5BF86 /* Main.storyboard */; };
 		D0B3FE611E7C242200D5BF86 /* Barkd1.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = D0B3FE5F1E7C242200D5BF86 /* Barkd1.xcdatamodeld */; };
 		D0B3FE631E7C242200D5BF86 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D0B3FE621E7C242200D5BF86 /* Assets.xcassets */; };
 		D0B3FE661E7C242200D5BF86 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D0B3FE641E7C242200D5BF86 /* LaunchScreen.storyboard */; };
+		D0B3FE751E7C24A700D5BF86 /* FeedVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0B3FE741E7C24A700D5BF86 /* FeedVC.swift */; };
+		D0B3FE771E7C24CA00D5BF86 /* NewUserVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0B3FE761E7C24CA00D5BF86 /* NewUserVC.swift */; };
+		D0B3FE791E7C24EA00D5BF86 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0B3FE781E7C24EA00D5BF86 /* Constants.swift */; };
+		D0B3FE7B1E7C250800D5BF86 /* DataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0B3FE7A1E7C250800D5BF86 /* DataService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		D0B3FE551E7C242200D5BF86 /* Barkd1.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Barkd1.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D0B3FE581E7C242200D5BF86 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		D0B3FE5A1E7C242200D5BF86 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		D0B3FE5A1E7C242200D5BF86 /* LogInVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInVC.swift; sourceTree = "<group>"; };
 		D0B3FE5D1E7C242200D5BF86 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		D0B3FE601E7C242200D5BF86 /* Barkd1.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Barkd1.xcdatamodel; sourceTree = "<group>"; };
 		D0B3FE621E7C242200D5BF86 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D0B3FE651E7C242200D5BF86 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D0B3FE671E7C242200D5BF86 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D0B3FE741E7C24A700D5BF86 /* FeedVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FeedVC.swift; path = ../FeedVC.swift; sourceTree = "<group>"; };
+		D0B3FE761E7C24CA00D5BF86 /* NewUserVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewUserVC.swift; sourceTree = "<group>"; };
+		D0B3FE781E7C24EA00D5BF86 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		D0B3FE7A1E7C250800D5BF86 /* DataService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,8 +64,12 @@
 		D0B3FE571E7C242200D5BF86 /* Barkd1 */ = {
 			isa = PBXGroup;
 			children = (
+				D0B3FE711E7C246700D5BF86 /* Services */,
+				D0B3FE701E7C244E00D5BF86 /* Utilities */,
+				D0B3FE6F1E7C244A00D5BF86 /* View */,
+				D0B3FE6E1E7C244500D5BF86 /* Model */,
+				D0B3FE6D1E7C243D00D5BF86 /* Controller */,
 				D0B3FE581E7C242200D5BF86 /* AppDelegate.swift */,
-				D0B3FE5A1E7C242200D5BF86 /* ViewController.swift */,
 				D0B3FE5C1E7C242200D5BF86 /* Main.storyboard */,
 				D0B3FE621E7C242200D5BF86 /* Assets.xcassets */,
 				D0B3FE641E7C242200D5BF86 /* LaunchScreen.storyboard */,
@@ -65,6 +77,46 @@
 				D0B3FE5F1E7C242200D5BF86 /* Barkd1.xcdatamodeld */,
 			);
 			path = Barkd1;
+			sourceTree = "<group>";
+		};
+		D0B3FE6D1E7C243D00D5BF86 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				D0B3FE5A1E7C242200D5BF86 /* LogInVC.swift */,
+				D0B3FE741E7C24A700D5BF86 /* FeedVC.swift */,
+				D0B3FE761E7C24CA00D5BF86 /* NewUserVC.swift */,
+			);
+			name = Controller;
+			sourceTree = "<group>";
+		};
+		D0B3FE6E1E7C244500D5BF86 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		D0B3FE6F1E7C244A00D5BF86 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		D0B3FE701E7C244E00D5BF86 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				D0B3FE781E7C24EA00D5BF86 /* Constants.swift */,
+			);
+			name = Utilities;
+			sourceTree = "<group>";
+		};
+		D0B3FE711E7C246700D5BF86 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				D0B3FE7A1E7C250800D5BF86 /* DataService.swift */,
+			);
+			name = Services;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -139,9 +191,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D0B3FE771E7C24CA00D5BF86 /* NewUserVC.swift in Sources */,
+				D0B3FE7B1E7C250800D5BF86 /* DataService.swift in Sources */,
+				D0B3FE751E7C24A700D5BF86 /* FeedVC.swift in Sources */,
 				D0B3FE611E7C242200D5BF86 /* Barkd1.xcdatamodeld in Sources */,
-				D0B3FE5B1E7C242200D5BF86 /* ViewController.swift in Sources */,
+				D0B3FE5B1E7C242200D5BF86 /* LogInVC.swift in Sources */,
 				D0B3FE591E7C242200D5BF86 /* AppDelegate.swift in Sources */,
+				D0B3FE791E7C24EA00D5BF86 /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
