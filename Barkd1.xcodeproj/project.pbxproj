@@ -17,9 +17,12 @@
 		D0B3FE771E7C24CA00D5BF86 /* NewUserVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0B3FE761E7C24CA00D5BF86 /* NewUserVC.swift */; };
 		D0B3FE791E7C24EA00D5BF86 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0B3FE781E7C24EA00D5BF86 /* Constants.swift */; };
 		D0B3FE7B1E7C250800D5BF86 /* DataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0B3FE7A1E7C250800D5BF86 /* DataService.swift */; };
+		E687A2B0187EEE5DE63FFB9A /* Pods_Barkd1.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE0286BA544A80F77D900307 /* Pods_Barkd1.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		28AE7C625803B8EFE70C2380 /* Pods-Barkd1.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Barkd1.release.xcconfig"; path = "Pods/Target Support Files/Pods-Barkd1/Pods-Barkd1.release.xcconfig"; sourceTree = "<group>"; };
+		BE0286BA544A80F77D900307 /* Pods_Barkd1.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Barkd1.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D0B3FE551E7C242200D5BF86 /* Barkd1.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Barkd1.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D0B3FE581E7C242200D5BF86 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D0B3FE5A1E7C242200D5BF86 /* LogInVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInVC.swift; sourceTree = "<group>"; };
@@ -32,6 +35,7 @@
 		D0B3FE761E7C24CA00D5BF86 /* NewUserVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewUserVC.swift; sourceTree = "<group>"; };
 		D0B3FE781E7C24EA00D5BF86 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		D0B3FE7A1E7C250800D5BF86 /* DataService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataService.swift; sourceTree = "<group>"; };
+		D4FF295F7F4208E74C8FE911 /* Pods-Barkd1.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Barkd1.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Barkd1/Pods-Barkd1.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -39,17 +43,37 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E687A2B0187EEE5DE63FFB9A /* Pods_Barkd1.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3FF06C8E38A2C4FC124DBB3C /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				D4FF295F7F4208E74C8FE911 /* Pods-Barkd1.debug.xcconfig */,
+				28AE7C625803B8EFE70C2380 /* Pods-Barkd1.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		CD8471E493298518157E1AE7 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				BE0286BA544A80F77D900307 /* Pods_Barkd1.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		D0B3FE4C1E7C242100D5BF86 = {
 			isa = PBXGroup;
 			children = (
 				D0B3FE571E7C242200D5BF86 /* Barkd1 */,
 				D0B3FE561E7C242200D5BF86 /* Products */,
+				3FF06C8E38A2C4FC124DBB3C /* Pods */,
+				CD8471E493298518157E1AE7 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -126,9 +150,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = D0B3FE6A1E7C242200D5BF86 /* Build configuration list for PBXNativeTarget "Barkd1" */;
 			buildPhases = (
+				B67AFE41A37F2712F8F9AD18 /* [CP] Check Pods Manifest.lock */,
 				D0B3FE511E7C242200D5BF86 /* Sources */,
 				D0B3FE521E7C242200D5BF86 /* Frameworks */,
 				D0B3FE531E7C242200D5BF86 /* Resources */,
+				CFA345CC6235D952D858FC28 /* [CP] Embed Pods Frameworks */,
+				3BFB4BC7252B8D02A391CCA1 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -185,6 +212,54 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		3BFB4BC7252B8D02A391CCA1 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Barkd1/Pods-Barkd1-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		B67AFE41A37F2712F8F9AD18 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		CFA345CC6235D952D858FC28 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Barkd1/Pods-Barkd1-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		D0B3FE511E7C242200D5BF86 /* Sources */ = {
@@ -318,6 +393,7 @@
 		};
 		D0B3FE6B1E7C242200D5BF86 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D4FF295F7F4208E74C8FE911 /* Pods-Barkd1.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = Barkd1/Info.plist;
@@ -330,6 +406,7 @@
 		};
 		D0B3FE6C1E7C242200D5BF86 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 28AE7C625803B8EFE70C2380 /* Pods-Barkd1.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = Barkd1/Info.plist;
@@ -359,6 +436,7 @@
 				D0B3FE6C1E7C242200D5BF86 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
