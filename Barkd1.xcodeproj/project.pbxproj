@@ -18,6 +18,7 @@
 		D0B3FE791E7C24EA00D5BF86 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0B3FE781E7C24EA00D5BF86 /* Constants.swift */; };
 		D0B3FE7B1E7C250800D5BF86 /* DataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0B3FE7A1E7C250800D5BF86 /* DataService.swift */; };
 		D0B3FE7D1E7C32B000D5BF86 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D0B3FE7C1E7C32B000D5BF86 /* GoogleService-Info.plist */; };
+		D0B3FE7F1E7C4AE600D5BF86 /* ProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0B3FE7E1E7C4AE600D5BF86 /* ProfileVC.swift */; };
 		E687A2B0187EEE5DE63FFB9A /* Pods_Barkd1.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE0286BA544A80F77D900307 /* Pods_Barkd1.framework */; };
 /* End PBXBuildFile section */
 
@@ -37,6 +38,7 @@
 		D0B3FE781E7C24EA00D5BF86 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		D0B3FE7A1E7C250800D5BF86 /* DataService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataService.swift; sourceTree = "<group>"; };
 		D0B3FE7C1E7C32B000D5BF86 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		D0B3FE7E1E7C4AE600D5BF86 /* ProfileVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileVC.swift; sourceTree = "<group>"; };
 		D4FF295F7F4208E74C8FE911 /* Pods-Barkd1.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Barkd1.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Barkd1/Pods-Barkd1.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -112,6 +114,7 @@
 				D0B3FE5A1E7C242200D5BF86 /* LogInVC.swift */,
 				D0B3FE741E7C24A700D5BF86 /* FeedVC.swift */,
 				D0B3FE761E7C24CA00D5BF86 /* NewUserVC.swift */,
+				D0B3FE7E1E7C4AE600D5BF86 /* ProfileVC.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -274,6 +277,7 @@
 				D0B3FE7B1E7C250800D5BF86 /* DataService.swift in Sources */,
 				D0B3FE751E7C24A700D5BF86 /* FeedVC.swift in Sources */,
 				D0B3FE611E7C242200D5BF86 /* Barkd1.xcdatamodeld in Sources */,
+				D0B3FE7F1E7C4AE600D5BF86 /* ProfileVC.swift in Sources */,
 				D0B3FE5B1E7C242200D5BF86 /* LogInVC.swift in Sources */,
 				D0B3FE591E7C242200D5BF86 /* AppDelegate.swift in Sources */,
 				D0B3FE791E7C24EA00D5BF86 /* Constants.swift in Sources */,

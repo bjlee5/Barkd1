@@ -54,6 +54,10 @@ class FeedVC: UIViewController {
             print ("Error signing out: \(signOutError.localizedDescription)")
         }
     }
+    @IBAction func profilePressed(_ sender: Any) {
+        let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ProfileVC")
+        self.present(vc, animated: true, completion: nil)
+    }
 }
 
 
