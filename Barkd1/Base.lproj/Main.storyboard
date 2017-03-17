@@ -436,9 +436,9 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BQX-tQ-GpL">
-                                <rect key="frame" x="0.0" y="0.0" width="113.5" height="30"/>
+                                <rect key="frame" x="0.0" y="0.0" width="114" height="63"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="30" id="ltA-Eg-ApH"/>
+                                    <constraint firstAttribute="height" constant="63" id="ltA-Eg-ApH"/>
                                 </constraints>
                                 <state key="normal" title="Back"/>
                                 <connections>

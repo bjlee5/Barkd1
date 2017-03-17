@@ -11,6 +11,10 @@ import Firebase
 import SwiftKeychainWrapper
 
 class ProfileVC: UIViewController {
+    
+    var storageRef: FIRStorage {
+        return FIRStorage.storage()
+    }
 
     @IBOutlet weak var proPic: UIImageView!
     @IBOutlet weak var usernameLabel: UITextView!
@@ -20,10 +24,48 @@ class ProfileVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        loadUserInfo()
     }
     
+    func loadUserInfo(){
+        let userRef = DataService.ds.REF_BASE.child("users/\(FIRAuth.auth()!.currentUser!.uid)")
+        userRef.observe(.value, with: { (snapshot) in
+            
+            let user = User(snapshot: snapshot)
+            self.usernameLabel.text = user.username
+            self.bioLabel.text = user.bio
+            
+            let imageURL = user.photoURL!
+            
+            self.storageRef.reference(forURL: imageURL).data(withMaxSize: 1 * 1024 * 1024, completion: { (imgData, error) in
+                
+                if error == nil {
+                    
+                    DispatchQueue.main.async {
+                        if let data = imgData {
+                            self.proPic.image = UIImage(data: data)
+                        }
+                    }
+                    
+                    
+                } else {
+                    print(error!.localizedDescription)
+                    
+                }
+                
+            })
+            
+            
+        }) { (error) in
+            print(error.localizedDescription)
+        }
+    }
+
 
     @IBAction func backPressed(_ sender: Any) {
+        let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "FeedVC")
+        self.present(vc, animated: true, completion: nil)
     }
     @IBAction func uploadPic(_ sender: Any) {
     }
