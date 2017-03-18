@@ -10,6 +10,8 @@ import Foundation
 import UIKit
 import Firebase
 
+// Restructure this to a class w/ private var via DevSlopes course - ERROR when unwrapping optional values!!! Recheck Freezy's course and see if that code runs, else watch the video - Update ** this is crashing when I navigate to this page for a user who's created an account without one of the required fields. For example, someone logging in via facebook does not have a username or profile pic yet. Or someone creating an account by signing in does not either //
+
 struct User {
     
     var username: String!

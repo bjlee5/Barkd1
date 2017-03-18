@@ -12,6 +12,8 @@ import SwiftKeychainWrapper
 
 class ProfileVC: UIViewController {
     
+    // Refactor storage reference // 
+    
     var storageRef: FIRStorage {
         return FIRStorage.storage()
     }
@@ -35,7 +37,7 @@ class ProfileVC: UIViewController {
             let user = User(snapshot: snapshot)
             self.usernameLabel.text = user.username
             self.bioLabel.text = user.bio
-            
+            self.emailLabel.text = user.email
             let imageURL = user.photoURL!
             
             self.storageRef.reference(forURL: imageURL).data(withMaxSize: 1 * 1024 * 1024, completion: { (imgData, error) in

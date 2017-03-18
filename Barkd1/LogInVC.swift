@@ -42,6 +42,7 @@ class LogInVC: UIViewController {
         FIRAuth.auth()?.signIn(with: credential, completion: { (user, error) in
             if error != nil {
                 print("BRIAN: Unable to authenticate with Firebase")
+                print("BRIAN: \(error?.localizedDescription)")
             } else {
                 print("BRIAN: Successfully authenticated with Firebase")
                 if let user = user {
@@ -52,6 +53,8 @@ class LogInVC: UIViewController {
         })
         
     }
+    
+    // Facebook login is not working. User cannot authenticate w/ Firebase? //
     
     @IBAction func loginPress(_ sender: Any) {
         if let email = loginField.text, let password = passwordField.text {
@@ -76,6 +79,7 @@ class LogInVC: UIViewController {
                         }
                     })
                 }
+ 
             })
             
         }

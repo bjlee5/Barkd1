@@ -26,7 +26,7 @@
         <key>CFBundleShortVersionString</key>
         <string>1.0</string>
         <key>FacebookAppID</key>
-        <string>890229634449788</string>
+        <string>1249984665114605</string>
         <key>CFBundleInfoDictionaryVersion</key>
         <string>6.0</string>
         <key>CFBundleExecutable</key>
@@ -36,13 +36,13 @@
             <string>armv7</string>
         </array>
         <key>FacebookDisplayName</key>
-        <string>Barkd1</string>
+        <string>Barkd2</string>
         <key>CFBundleURLTypes</key>
         <array>
             <dict>
                 <key>CFBundleURLSchemes</key>
                 <array>
-                    <string>fb890229634449788</string>
+                    <string>fb1249984665114605</string>
                 </array>
             </dict>
         </array>
