@@ -14,15 +14,21 @@ import SwiftKeychainWrapper
 
 class FeedVC: UIViewController {
     
+    // Refactor this storage ref using DataService // 
+    
+    var storageRef: FIRStorage {
+        return FIRStorage.storage()
+    }
+    
     @IBOutlet weak var feedLabel: UILabel!
+    @IBOutlet weak var profilePic: UIImageView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         showCurrentUser()
+        loadUserInfo()
     }
-    
-    // Attempting to get the username to display on the feed... So far this is only working for items that are mebmers of FIRAUTH.currentUser i.e. email, providerID, etc. //
     
     func showCurrentUser() {
         if FIRAuth.auth()?.currentUser != nil {
@@ -32,13 +38,33 @@ class FeedVC: UIViewController {
         }
     }
     
-    /*
-     func displayCurrentUser() {
-     let user = FIRAuth.auth()?.currentUser
-     let username = user?.providerID
-     feedLabel.text = username
-     }
-     */
+    // This is the same function (basically) as appears in ProfileVC, look for a way to refactor this code somehow... //
+    
+    func loadUserInfo(){
+        let userRef = DataService.ds.REF_BASE.child("users/\(FIRAuth.auth()!.currentUser!.uid)")
+        userRef.observe(.value, with: { (snapshot) in
+            
+            let user = User(snapshot: snapshot)
+            let imageURL = user.photoURL!
+            
+            self.storageRef.reference(forURL: imageURL).data(withMaxSize: 1 * 1024 * 1024, completion: { (imgData, error) in
+                if error == nil {
+                    DispatchQueue.main.async {
+                        if let data = imgData {
+                            self.profilePic.image = UIImage(data: data)
+                        }
+                    }
+                    
+                } else {
+                    print(error!.localizedDescription)
+                }
+            })
+            
+        }) { (error) in
+            print(error.localizedDescription)
+        }
+    }
+
     
     @IBAction func logOutPress(_ sender: Any) {
         let firebaseAuth = FIRAuth.auth()

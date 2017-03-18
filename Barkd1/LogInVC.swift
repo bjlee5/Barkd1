@@ -54,34 +54,31 @@ class LogInVC: UIViewController {
         
     }
     
-    // Facebook login is not working. User cannot authenticate w/ Firebase? //
-    
+/* let userData = ["provider": user.providerID]
+ self.completeSignIn(id: user.uid, userData: userData)*/
+ 
     @IBAction func loginPress(_ sender: Any) {
         if let email = loginField.text, let password = passwordField.text {
             FIRAuth.auth()?.signIn(withEmail: email, password: password, completion: { (user, error) in
-                if error == nil {
-                    print("BRIAN: Email user authenticated with Firebase")
-                    if let user = user {
-                        let userData = ["provider": user.providerID]
-                        self.completeSignIn(id: user.uid, userData: userData)
+                
+                if error != nil {
+                    print("BRIAN: Password and E-mail address do not match our records!")
+                    
+                    let alertController = UIAlertController(title: "Oops!", message: "Your e-mail and/or password do not match our records!", preferredStyle: .alert)
+                    self.present(alertController, animated: true, completion: nil)
+                    let OKAction = UIAlertAction(title: "OK", style: .default) { (action:UIAlertAction) in
+                        print("You've pressed OK button")
+                        
                     }
-                } else {
-                    FIRAuth.auth()?.createUser(withEmail: email, password: password, completion: { (user, error) in
-                        if error != nil {
-                            print("BRIAN: Unable to authenticate with Firebase using email")
-                        } else {
-                            print("BRIAN: Successfully authenticated with Firebase")
-                            if let user = user {
-                                let userData = ["provider": user.providerID]
-                                self.completeSignIn(id: user.uid, userData: userData)
-                                
-                            }
-                        }
-                    })
+                    
+                    alertController.addAction(OKAction)
                 }
- 
+                if let user = user {
+                    let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "FeedVC")
+                    self.present(vc, animated: true, completion: nil)
+
+                }
             })
-            
         }
         
     }
@@ -112,7 +109,8 @@ class LogInVC: UIViewController {
         DataService.ds.createFirebaseDBUser(uid: id, userData: userData)
         let keychainResult = KeychainWrapper.standard.set(id, forKey: KEY_UID)
         print("BRIAN: Segway completed \(keychainResult)")
-        performSegue(withIdentifier: "FeedVC", sender: nil)
+        let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "FeedVC")
+        self.present(vc, animated: true, completion: nil)
     }
     
 }

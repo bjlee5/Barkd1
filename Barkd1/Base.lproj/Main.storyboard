@@ -296,16 +296,25 @@
                                     <constraint firstAttribute="width" constant="45" id="TYq-LW-mPH"/>
                                     <constraint firstAttribute="height" constant="45" id="YrZ-CC-0ng"/>
                                 </constraints>
-                                <state key="normal" backgroundImage="user"/>
+                                <state key="normal" title="Button"/>
                                 <connections>
                                     <action selector="profilePressed:" destination="stL-b1-fOb" eventType="touchUpInside" id="usm-T7-2qH"/>
                                 </connections>
                             </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="user" translatesAutoresizingMaskIntoConstraints="NO" id="HPP-P4-Eqv">
+                                <rect key="frame" x="314" y="17" width="45" height="45"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="45" id="NeK-v3-tjG"/>
+                                    <constraint firstAttribute="height" constant="45" id="iBH-Gd-20g"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" red="0.78039215689999997" green="0.17254901959999999" blue="0.38431372549999998" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
+                            <constraint firstItem="HPP-P4-Eqv" firstAttribute="top" secondItem="r3X-CX-Nue" secondAttribute="topMargin" constant="17" id="1Oi-Vg-bKy"/>
                             <constraint firstItem="iP4-E5-zAR" firstAttribute="top" secondItem="KdR-Dx-w1d" secondAttribute="bottom" constant="226" id="1dt-mw-xrd"/>
                             <constraint firstItem="Vl3-yC-vzL" firstAttribute="leading" secondItem="r3X-CX-Nue" secondAttribute="leadingMargin" id="5cw-cV-ddn"/>
+                            <constraint firstItem="HPP-P4-Eqv" firstAttribute="trailing" secondItem="r3X-CX-Nue" secondAttribute="trailingMargin" id="GLE-TX-Rb2"/>
                             <constraint firstItem="KQo-qu-RAq" firstAttribute="top" secondItem="r3X-CX-Nue" secondAttribute="topMargin" constant="17" id="Lkf-5M-FEu"/>
                             <constraint firstItem="KQo-qu-RAq" firstAttribute="trailing" secondItem="r3X-CX-Nue" secondAttribute="trailingMargin" id="WaQ-ha-Za1"/>
                             <constraint firstAttribute="trailingMargin" secondItem="iP4-E5-zAR" secondAttribute="trailing" constant="88" id="Z9k-HJ-gYf"/>
@@ -315,11 +324,12 @@
                     </view>
                     <connections>
                         <outlet property="feedLabel" destination="iP4-E5-zAR" id="iaW-gj-4rL"/>
+                        <outlet property="profilePic" destination="HPP-P4-Eqv" id="vW0-xS-571"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RyW-76-r0F" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1204" y="139"/>
+            <point key="canvasLocation" x="1204" y="138.98050974512745"/>
         </scene>
         <!--ProfileVC-->
         <scene sceneID="gHA-n8-3bK">
