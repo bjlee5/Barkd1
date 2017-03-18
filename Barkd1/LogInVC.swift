@@ -56,6 +56,8 @@ class LogInVC: UIViewController {
     
 /* let userData = ["provider": user.providerID]
  self.completeSignIn(id: user.uid, userData: userData)*/
+    
+    // This is not signing the user in properly. Stops an e-mail that hasn't been authenticated but will not sign in a current user // 
  
     @IBAction func loginPress(_ sender: Any) {
         if let email = loginField.text, let password = passwordField.text {

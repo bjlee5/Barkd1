@@ -7,11 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D061A7031E7DD1C100C18581 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D061A7021E7DD1C100C18581 /* Assets.xcassets */; };
+		D061A7071E7DD91F00C18581 /* PostCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D061A7061E7DD91F00C18581 /* PostCell.swift */; };
+		D061A7091E7DDA3F00C18581 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = D061A7081E7DDA3F00C18581 /* Post.swift */; };
 		D0B3FE591E7C242200D5BF86 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0B3FE581E7C242200D5BF86 /* AppDelegate.swift */; };
 		D0B3FE5B1E7C242200D5BF86 /* LogInVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0B3FE5A1E7C242200D5BF86 /* LogInVC.swift */; };
 		D0B3FE5E1E7C242200D5BF86 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D0B3FE5C1E7C242200D5BF86 /* Main.storyboard */; };
 		D0B3FE611E7C242200D5BF86 /* Barkd1.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = D0B3FE5F1E7C242200D5BF86 /* Barkd1.xcdatamodeld */; };
-		D0B3FE631E7C242200D5BF86 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D0B3FE621E7C242200D5BF86 /* Assets.xcassets */; };
 		D0B3FE661E7C242200D5BF86 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D0B3FE641E7C242200D5BF86 /* LaunchScreen.storyboard */; };
 		D0B3FE751E7C24A700D5BF86 /* FeedVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0B3FE741E7C24A700D5BF86 /* FeedVC.swift */; };
 		D0B3FE771E7C24CA00D5BF86 /* NewUserVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0B3FE761E7C24CA00D5BF86 /* NewUserVC.swift */; };
@@ -26,12 +28,14 @@
 /* Begin PBXFileReference section */
 		28AE7C625803B8EFE70C2380 /* Pods-Barkd1.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Barkd1.release.xcconfig"; path = "Pods/Target Support Files/Pods-Barkd1/Pods-Barkd1.release.xcconfig"; sourceTree = "<group>"; };
 		BE0286BA544A80F77D900307 /* Pods_Barkd1.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Barkd1.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D061A7021E7DD1C100C18581 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		D061A7061E7DD91F00C18581 /* PostCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostCell.swift; sourceTree = "<group>"; };
+		D061A7081E7DDA3F00C18581 /* Post.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 		D0B3FE551E7C242200D5BF86 /* Barkd1.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Barkd1.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D0B3FE581E7C242200D5BF86 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D0B3FE5A1E7C242200D5BF86 /* LogInVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInVC.swift; sourceTree = "<group>"; };
 		D0B3FE5D1E7C242200D5BF86 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		D0B3FE601E7C242200D5BF86 /* Barkd1.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Barkd1.xcdatamodel; sourceTree = "<group>"; };
-		D0B3FE621E7C242200D5BF86 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D0B3FE651E7C242200D5BF86 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D0B3FE671E7C242200D5BF86 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D0B3FE741E7C24A700D5BF86 /* FeedVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FeedVC.swift; path = ../FeedVC.swift; sourceTree = "<group>"; };
@@ -101,11 +105,11 @@
 				D0B3FE6D1E7C243D00D5BF86 /* Controller */,
 				D0B3FE581E7C242200D5BF86 /* AppDelegate.swift */,
 				D0B3FE5C1E7C242200D5BF86 /* Main.storyboard */,
-				D0B3FE621E7C242200D5BF86 /* Assets.xcassets */,
 				D0B3FE641E7C242200D5BF86 /* LaunchScreen.storyboard */,
 				D0B3FE671E7C242200D5BF86 /* Info.plist */,
 				D0B3FE5F1E7C242200D5BF86 /* Barkd1.xcdatamodeld */,
 				D0B3FE7C1E7C32B000D5BF86 /* GoogleService-Info.plist */,
+				D061A7021E7DD1C100C18581 /* Assets.xcassets */,
 			);
 			path = Barkd1;
 			sourceTree = "<group>";
@@ -125,6 +129,7 @@
 			isa = PBXGroup;
 			children = (
 				D0B3FE801E7C53D600D5BF86 /* User.swift */,
+				D061A7081E7DDA3F00C18581 /* Post.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -132,6 +137,7 @@
 		D0B3FE6F1E7C244A00D5BF86 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				D061A7061E7DD91F00C18581 /* PostCell.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -215,8 +221,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				D0B3FE661E7C242200D5BF86 /* LaunchScreen.storyboard in Resources */,
-				D0B3FE631E7C242200D5BF86 /* Assets.xcassets in Resources */,
 				D0B3FE5E1E7C242200D5BF86 /* Main.storyboard in Resources */,
+				D061A7031E7DD1C100C18581 /* Assets.xcassets in Resources */,
 				D0B3FE7D1E7C32B000D5BF86 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -277,8 +283,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				D0B3FE771E7C24CA00D5BF86 /* NewUserVC.swift in Sources */,
+				D061A7091E7DDA3F00C18581 /* Post.swift in Sources */,
 				D0B3FE7B1E7C250800D5BF86 /* DataService.swift in Sources */,
 				D0B3FE751E7C24A700D5BF86 /* FeedVC.swift in Sources */,
+				D061A7071E7DD91F00C18581 /* PostCell.swift in Sources */,
 				D0B3FE611E7C242200D5BF86 /* Barkd1.xcdatamodeld in Sources */,
 				D0B3FE7F1E7C4AE600D5BF86 /* ProfileVC.swift in Sources */,
 				D0B3FE811E7C53D600D5BF86 /* User.swift in Sources */,
