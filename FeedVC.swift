@@ -14,6 +14,8 @@ import SwiftKeychainWrapper
 
 class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
+    // The posted image is not showing up on the feed, big issues with current user logged in. Crashes for anyone trying to sign in a second time outside of the initial creation of the user //
+    
     // Refactor this storage ref using DataService // 
     
     var posts = [Post]()
@@ -27,6 +29,7 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UIIm
     @IBOutlet weak var profilePic: UIImageView!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var userPost: UIImageView!
+    @IBOutlet weak var postCaption: UITextField!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,12 +43,32 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UIIm
         imagePicker.delegate = self
         imagePicker.allowsEditing = true
         
+        
+        DataService.ds.REF_POSTS.observe(.value, with: { (snapshot) in
+            self.posts = []
+            if let snapshot = snapshot.children.allObjects as? [FIRDataSnapshot] {
+                for snap in snapshot {
+                    print("SNAP: \(snap)")
+                    if let postDict = snap.value as? Dictionary<String, AnyObject> {
+                        let key = snap.key
+                        let post = Post(postKey: key, postData: postDict)
+                        self.posts.append(post)
+                    }
+                }
+            }
+            
+            self.tableView.reloadData()
+            
+        })
+        
     }
+    /*
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         loadUserInfo()
     }
+    */
     
     func showCurrentUser() {
         if FIRAuth.auth()?.currentUser != nil {
@@ -57,7 +80,9 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UIIm
     
     // This is the same function (basically) as appears in ProfileVC, look for a way to refactor this code somehow... //
     
-    // Loading Currnet user //
+    // Loading Currnet user // - This is causing the app to crash bc for whatever reason the loadUserInfo() for the profile pic in the side is calling before the user is technically signed in. When I remove this function the user signs in fine. 
+    
+    /*
     
     func loadUserInfo(){
         let userRef = DataService.ds.REF_BASE.child("users/\(FIRAuth.auth()!.currentUser!.uid)")
@@ -83,15 +108,32 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UIIm
             print(error.localizedDescription)
         }
     }
+ 
+ */
     
     // User Feed //
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+        return posts.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        return UITableViewCell()
+        
+        let post = posts[indexPath.row]
+        
+        if let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as? PostCell {
+            
+            if let img = FeedVC.imageCache.object(forKey: post.imageURL as NSString!) {
+                cell.configureCell(post: post, img: img)
+            } else {
+                cell.configureCell(post: post)
+            }
+            return cell
+        } else {
+            
+            return PostCell()
+            
+        }
     }
     
     // Posting to Firebase //
@@ -107,6 +149,59 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UIIm
     @IBAction func imagePressed(_ sender: Any) {
         present(imagePicker, animated: true, completion: nil)
     }
+    
+    @IBAction func postSubmit(_ sender: Any) {
+        guard let caption = postCaption.text, caption != "" else {
+            print("BRIAN: Caption must be entered")
+            return
+        }
+        guard let img = userPost.image, imageSelected == true else {
+            print("BRIAN: An image must be selected")
+            return
+        }
+        
+        if let imgData = UIImageJPEGRepresentation(img, 0.2) {
+            
+            let imgUid = NSUUID().uuidString
+            let metadata = FIRStorageMetadata()
+            metadata.contentType = "image/jpeg"
+            
+            DataService.ds.REF_POST_IMAGES.child(imgUid).put(imgData, metadata: metadata) { (metdata, error) in
+                if error != nil {
+                    print("BRIAN: Unable to upload image to Firebase storage")
+                } else {
+                    print("BRIAN: Successfully printed image to Firebase")
+                    let downloadURL = metdata?.downloadURL()?.absoluteString
+                    if let url = downloadURL {
+                        self.postToFirebase(imgUrl: url)
+                    }
+                    
+                }
+                
+            }
+        }
+        
+    }
+    
+    func postToFirebase(imgUrl: String) {
+        let post: Dictionary<String, Any> = [
+            "caption": postCaption.text!,
+            "imageURL": imgUrl,
+            "likes": 0
+        ]
+        
+        
+        let firebasePost = DataService.ds.REF_POSTS.childByAutoId()
+        firebasePost.setValue(post)
+        
+        postCaption.text = ""
+        imageSelected = false
+        userPost.image = UIImage(named: "add-image")
+        
+        self.tableView.reloadData()
+
+    }
+
 
     // Logging Out //
 
@@ -128,10 +223,4 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UIIm
         let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ProfileVC")
         self.present(vc, animated: true, completion: nil)
     }
-
-    @IBAction func postSubmit(_ sender: Any) {
-    }
-    
-    
-
 }

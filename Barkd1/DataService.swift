@@ -39,15 +39,13 @@ class DataService: UIViewController {
         return _REF_POST_IMAGES
     }
     
-    /*
+    // Error in unwrapping optional value when posting user image? // 
      
      var REF_CURRENT_USERS: FIRDatabaseReference {
      let uid = KeychainWrapper.standard.string(forKey: KEY_UID)
      let user = REF_USERS.child(uid!)
      return user
      }
-     
-     */
     
     func createFirebaseDBUser(uid: String, userData: Dictionary<String, String>) {
         REF_USERS.child(uid).updateChildValues(userData)
