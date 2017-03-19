@@ -60,31 +60,26 @@ class LogInVC: UIViewController {
     // This is not signing the user in properly. Stops an e-mail that hasn't been authenticated but will not sign in a current user // 
  
     @IBAction func loginPress(_ sender: Any) {
-        if let email = loginField.text, let password = passwordField.text {
-            FIRAuth.auth()?.signIn(withEmail: email, password: password, completion: { (user, error) in
+        guard loginField.text != "", passwordField.text != "" else { return }
+        FIRAuth.auth()?.signIn(withEmail: loginField.text!, password: passwordField.text!, completion: { (user, error) in
+            if let error = error {
+                print("BRIAN: Password and E-mail address do not match our records!")
                 
-                if error != nil {
-                    print("BRIAN: Password and E-mail address do not match our records!")
+                let alertController = UIAlertController(title: "Oops!", message: "Your e-mail and/or password do not match our records!", preferredStyle: .alert)
+                self.present(alertController, animated: true, completion: nil)
+                let OKAction = UIAlertAction(title: "Try Again", style: .default) { (action:UIAlertAction) in
+                    print("You've pressed OK button");
                     
-                    let alertController = UIAlertController(title: "Oops!", message: "Your e-mail and/or password do not match our records!", preferredStyle: .alert)
-                    self.present(alertController, animated: true, completion: nil)
-                    let OKAction = UIAlertAction(title: "OK", style: .default) { (action:UIAlertAction) in
-                        print("You've pressed OK button")
-                        
-                    }
-                    
-                    alertController.addAction(OKAction)
                 }
-                if let user = user {
-                    let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "FeedVC")
-                    self.present(vc, animated: true, completion: nil)
-
-                }
-            })
-        }
-        
+                
+                alertController.addAction(OKAction)
+            }
+            if let user = user {
+                let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "FeedVC")
+                self.present(vc, animated: true, completion: nil)
+            }
+        })
     }
-    
     
     @IBAction func fbLoginPress(_ sender: Any) {
         let facebookLogin = FBSDKLoginManager()

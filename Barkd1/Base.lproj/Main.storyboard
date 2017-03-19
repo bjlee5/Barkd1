@@ -430,7 +430,7 @@
                                                     <constraint firstAttribute="width" constant="50" id="kOr-be-7Sh"/>
                                                 </constraints>
                                                 <connections>
-                                                    <outletCollection property="gestureRecognizers" destination="ZQG-Qq-OkF" appends="YES" id="9rh-QQ-oWz"/>
+                                                    <outletCollection property="gestureRecognizers" destination="wIh-Sb-nfc" appends="YES" id="ccw-u0-EMc"/>
                                                 </connections>
                                             </imageView>
                                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="WAm-yp-fqQ">
@@ -487,11 +487,7 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RyW-76-r0F" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <tapGestureRecognizer id="ZQG-Qq-OkF">
-                    <connections>
-                        <action selector="userPostPrs:" destination="stL-b1-fOb" id="Npj-eA-OLn"/>
-                    </connections>
-                </tapGestureRecognizer>
+                <tapGestureRecognizer id="wIh-Sb-nfc"/>
             </objects>
             <point key="canvasLocation" x="1204" y="138.98050974512745"/>
         </scene>

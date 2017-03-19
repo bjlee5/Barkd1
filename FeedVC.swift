@@ -32,7 +32,6 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UIIm
         super.viewDidLoad()
         
         showCurrentUser()
-        loadUserInfo()
         
         tableView.delegate = self
         tableView.dataSource = self
@@ -41,6 +40,11 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UIIm
         imagePicker.delegate = self
         imagePicker.allowsEditing = true
         
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        loadUserInfo()
     }
     
     func showCurrentUser() {
@@ -100,7 +104,7 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UIIm
         imagePicker.dismiss(animated: true, completion: nil)
     }
     
-    @IBAction func userPostPrs(_ sender: Any) {
+    @IBAction func imagePressed(_ sender: Any) {
         present(imagePicker, animated: true, completion: nil)
     }
 
