@@ -20,6 +20,11 @@ class LogInVC: UIViewController {
         super.viewDidLoad()
         
         showCurrentUser()
+        
+        // Dismiss Keyboard //
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(UIInputViewController.dismissKeyboard))
+        view.addGestureRecognizer(tap)
+        
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -28,6 +33,10 @@ class LogInVC: UIViewController {
             performSegue(withIdentifier: "FeedVC", sender: nil)
         }
         
+    }
+    
+    func dismissKeyboard() {
+        view.endEditing(true)
     }
     
     func showCurrentUser() {

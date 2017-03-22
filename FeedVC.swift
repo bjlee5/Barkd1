@@ -61,6 +61,10 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UIIm
             
         })
         
+        // Dismiss Keyboard //
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(UIInputViewController.dismissKeyboard))
+        view.addGestureRecognizer(tap)
+        
     }
     /*
     
@@ -69,6 +73,10 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UIIm
         loadUserInfo()
     }
     */
+    
+    func dismissKeyboard() {
+        view.endEditing(true)
+    }
     
     func showCurrentUser() {
         if FIRAuth.auth()?.currentUser != nil {
