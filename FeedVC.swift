@@ -14,7 +14,7 @@ import SwiftKeychainWrapper
 
 class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
-    // The posted image is not showing up on the feed, big issues with current user logged in. Crashes for anyone trying to sign in a second time outside of the initial creation of the user //
+    // Update: 3/22/17 - 10:57AM --- When signing in as an existing user, the posts will not show up on the feed. HOWEVER, this user can post, and when cycling back to the feed from ProfileVC the correct feed shows up //
     
     // Refactor this storage ref using DataService // 
     

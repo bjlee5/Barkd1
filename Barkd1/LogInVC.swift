@@ -84,8 +84,9 @@ class LogInVC: UIViewController {
                 alertController.addAction(OKAction)
             }
             if let user = user {
-                let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "FeedVC")
-                self.present(vc, animated: true, completion: nil)
+                let userData = ["email": self.loginField.text!]
+                self.completeSignIn(id: user.uid, userData: userData)
+                print("BRIAN: You've successefully signed in with your e-mail player")
             }
         })
     }
