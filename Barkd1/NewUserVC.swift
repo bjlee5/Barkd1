@@ -28,7 +28,15 @@ class NewUserVC: UIViewController, UIImagePickerControllerDelegate, UINavigation
         imagePicker = UIImagePickerController()
         imagePicker.delegate = self
         imagePicker.allowsEditing = true
+     
+        // Dismiss Keyboard //
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(UIInputViewController.dismissKeyboard))
+        view.addGestureRecognizer(tap)
         
+    }
+    
+    func dismissKeyboard() {
+        view.endEditing(true)
     }
     
     // ImagePicker //
@@ -40,6 +48,7 @@ class NewUserVC: UIViewController, UIImagePickerControllerDelegate, UINavigation
             selectImgBtn.isHidden = true
             imageSelected = true
         }
+        
         imagePicker.dismiss(animated: true, completion: nil)
     }
     

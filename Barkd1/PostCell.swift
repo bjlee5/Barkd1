@@ -24,7 +24,6 @@ class PostCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
         
         
         let tap = UITapGestureRecognizer(target: self, action: #selector(likesTapped))
@@ -34,12 +33,33 @@ class PostCell: UITableViewCell {
         
     }
     
+    // Load Current User //
+    
+    func loadUserInfo(){
+        let userRef = DataService.ds.REF_BASE.child("users/\(FIRAuth.auth()!.currentUser!.uid)")
+        userRef.observe(.value, with: { (snapshot) in
+            
+            let user = User(snapshot: snapshot)
+            self.username.text = user.username
+            })
+        { (error) in
+            print(error.localizedDescription)
+        }
+    }
+//
+    
     func configureCell(post: Post, img: UIImage? = nil) {
         
         self.post = post
         self.likesRef = DataService.ds.REF_CURRENT_USERS.child("likes").child(post.postKey)
         self.postText.text = post.caption
         self.likesNumber.text = "\(post.likes)"
+        
+        let userRef = DataService.ds.REF_BASE.child("users/\(FIRAuth.auth()!.currentUser!.uid)")
+        userRef.observe(.value, with: { (snapshot) in
+            let user = User(snapshot: snapshot)
+            self.username.text = "\(post.postUser)"
+        })
         
         if img != nil {
             self.postPic.image = img

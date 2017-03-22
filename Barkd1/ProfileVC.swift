@@ -40,6 +40,8 @@ class ProfileVC: UIViewController {
             self.emailLabel.text = user.email
             let imageURL = user.photoURL!
             
+            // Clean up profilePic is storage - model after the post-pic, which is creating a folder in storage. This is too messy right now.
+            
             self.storageRef.reference(forURL: imageURL).data(withMaxSize: 1 * 1024 * 1024, completion: { (imgData, error) in
                 
                 if error == nil {

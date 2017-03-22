@@ -13,8 +13,7 @@ import Firebase
 import SwiftKeychainWrapper
 
 class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
-    
-    // Update: 3/22/17 - 10:57AM --- When signing in as an existing user, the posts will not show up on the feed. HOWEVER, this user can post, and when cycling back to the feed from ProfileVC the correct feed shows up //
+
     
     // Refactor this storage ref using DataService // 
     
@@ -30,6 +29,7 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UIIm
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var userPost: UIImageView!
     @IBOutlet weak var postCaption: UITextField!
+    @IBOutlet weak var currentUser: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -66,13 +66,6 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UIIm
         view.addGestureRecognizer(tap)
         
     }
-    /*
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        loadUserInfo()
-    }
-    */
     
     func dismissKeyboard() {
         view.endEditing(true)
@@ -81,6 +74,7 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UIIm
     func showCurrentUser() {
         if FIRAuth.auth()?.currentUser != nil {
             print("BRIAN: There is somebody signed in!!!")
+            loadUserInfo()
         } else {
             print("Aint nobody signed in!!!")
         }
@@ -92,12 +86,33 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UIIm
     
     /*
     
+    let ref = FIRStorage.storage().reference(forURL: post.imageURL)
+    ref.data(withMaxSize: 2 * 1024 * 1024, completion: { (data, error) in
+    if error != nil {
+    print("BRIAN: Unable to download image from Firebase")
+    } else {
+    print("Image downloaded successfully")
+    if let imgData = data {
+    if let img = UIImage(data: imgData) {
+    self.postPic.image = img
+    FeedVC.imageCache.setObject(img, forKey: post.imageURL as NSString!)
+    }
+    }
+    
+    
+    }
+    })
+ */
+ 
+    
+
     func loadUserInfo(){
         let userRef = DataService.ds.REF_BASE.child("users/\(FIRAuth.auth()!.currentUser!.uid)")
         userRef.observe(.value, with: { (snapshot) in
             
             let user = User(snapshot: snapshot)
             let imageURL = user.photoURL!
+            self.currentUser.text = user.username
             
             self.storageRef.reference(forURL: imageURL).data(withMaxSize: 1 * 1024 * 1024, completion: { (imgData, error) in
                 if error == nil {
@@ -106,18 +121,15 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UIIm
                             self.profilePic.image = UIImage(data: data)
                         }
                     }
-                    
                 } else {
                     print(error!.localizedDescription)
                 }
             })
-            
         }) { (error) in
             print(error.localizedDescription)
-        }
     }
+}
  
- */
     
     // User Feed //
     
@@ -143,7 +155,8 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UIIm
             
         }
     }
-    
+
+
     // Posting to Firebase //
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
@@ -195,7 +208,8 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UIIm
         let post: Dictionary<String, Any> = [
             "caption": postCaption.text!,
             "imageURL": imgUrl,
-            "likes": 0
+            "likes": 0,
+            "postUser": currentUser.text!
         ]
         
         

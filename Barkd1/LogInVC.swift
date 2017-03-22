@@ -30,7 +30,8 @@ class LogInVC: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         if let _ = KeychainWrapper.standard.string(forKey: KEY_UID){
             print("BRIAN: ID found in keychain")
-            performSegue(withIdentifier: "FeedVC", sender: nil)
+            let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "FeedVC")
+            self.present(vc, animated: true, completion: nil)
         }
         
     }
@@ -55,7 +56,7 @@ class LogInVC: UIViewController {
             } else {
                 print("BRIAN: Successfully authenticated with Firebase")
                 if let user = user {
-                    let userData = ["provider": credential.provider]
+                    let userData = ["email": self.loginField.text!, "password": self.passwordField.text!]
                     self.completeSignIn(id: user.uid, userData: userData)
                 }
             }
@@ -69,7 +70,18 @@ class LogInVC: UIViewController {
     // This is not signing the user in properly. Stops an e-mail that hasn't been authenticated but will not sign in a current user // 
  
     @IBAction func loginPress(_ sender: Any) {
-        guard loginField.text != "", passwordField.text != "" else { return }
+        guard loginField.text != "", passwordField.text != "" else {
+            
+            let alertController = UIAlertController(title: "Oops!", message: "You've left the e-mail field blank you fucking numbskull!", preferredStyle: .alert)
+            self.present(alertController, animated: true, completion: nil)
+            let OKAction = UIAlertAction(title: "Try Again", style: .default) { (action:UIAlertAction) in
+                print("You've pressed OK button");
+                
+            }
+            
+            alertController.addAction(OKAction)
+            return }
+        
         FIRAuth.auth()?.signIn(withEmail: loginField.text!, password: passwordField.text!, completion: { (user, error) in
             if let error = error {
                 print("BRIAN: Password and E-mail address do not match our records!")
@@ -84,7 +96,7 @@ class LogInVC: UIViewController {
                 alertController.addAction(OKAction)
             }
             if let user = user {
-                let userData = ["email": self.loginField.text!]
+                let userData = ["email": self.loginField.text!, "password": self.passwordField.text!]
                 self.completeSignIn(id: user.uid, userData: userData)
                 print("BRIAN: You've successefully signed in with your e-mail player")
             }
@@ -118,6 +130,7 @@ class LogInVC: UIViewController {
         print("BRIAN: Segway completed \(keychainResult)")
         let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "FeedVC")
         self.present(vc, animated: true, completion: nil)
+        
     }
     
 }

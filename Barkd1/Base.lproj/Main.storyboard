@@ -22,7 +22,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter E-mail" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="07M-I8-yzi">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter E-mail" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="07M-I8-yzi" customClass="SexyField" customModule="Barkd1" customModuleProvider="target">
                                 <rect key="frame" x="60" y="318" width="256" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="Vpp-ay-hnF"/>
@@ -31,7 +31,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter Password" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="562-4E-gRP">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter Password" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="562-4E-gRP" customClass="SexyField" customModule="Barkd1" customModuleProvider="target">
                                 <rect key="frame" x="60" y="363" width="256" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="UAN-7T-qzT"/>
@@ -40,7 +40,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2CB-nr-OSi">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2CB-nr-OSi" customClass="SexyButton" customModule="Barkd1" customModuleProvider="target">
                                 <rect key="frame" x="60" y="401" width="256" height="30"/>
                                 <color key="backgroundColor" red="0.337291652" green="0.62529191319999999" blue="0.97254901959999995" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
@@ -51,7 +51,6 @@
                                 </state>
                                 <connections>
                                     <action selector="loginPress:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Xfx-7G-eTj"/>
-                                    <segue destination="stL-b1-fOb" kind="show" identifier="FeedVC" id="RMT-XJ-aJm"/>
                                 </connections>
                             </button>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="facebook" translatesAutoresizingMaskIntoConstraints="NO" id="W8y-vn-pmK">
@@ -167,7 +166,7 @@
                                     <action selector="selectImgPress:" destination="WqX-A2-Vxy" eventType="touchUpInside" id="wvn-9G-BnQ"/>
                                 </connections>
                             </button>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter Username" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="d86-VC-K83">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter Username" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="d86-VC-K83" customClass="SexyField" customModule="Barkd1" customModuleProvider="target">
                                 <rect key="frame" x="64" y="277" width="246" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="UVo-uT-UAk"/>
@@ -176,7 +175,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter Email" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="JQU-5A-4zw">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter Email" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="JQU-5A-4zw" customClass="SexyField" customModule="Barkd1" customModuleProvider="target">
                                 <rect key="frame" x="64" y="315" width="246" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="4KK-lb-bql"/>
@@ -185,7 +184,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter Password" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="G20-hq-3NJ">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter Password" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="G20-hq-3NJ" customClass="SexyField" customModule="Barkd1" customModuleProvider="target">
                                 <rect key="frame" x="64" y="353" width="246" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="Y5B-S4-KbP"/>
@@ -203,7 +202,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Pit-uV-aFY">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Pit-uV-aFY" customClass="SexyButton" customModule="Barkd1" customModuleProvider="target">
                                 <rect key="frame" x="111" y="540" width="153" height="30"/>
                                 <color key="backgroundColor" red="0.337291652" green="0.62529191319999999" blue="0.97254901959999995" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
@@ -292,7 +291,7 @@
                                     <action selector="profilePressed:" destination="stL-b1-fOb" eventType="touchUpInside" id="usm-T7-2qH"/>
                                 </connections>
                             </button>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="user" translatesAutoresizingMaskIntoConstraints="NO" id="HPP-P4-Eqv">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="user" translatesAutoresizingMaskIntoConstraints="NO" id="HPP-P4-Eqv" customClass="CircleView" customModule="Barkd1" customModuleProvider="target">
                                 <rect key="frame" x="314" y="17" width="45" height="45"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="45" id="NeK-v3-tjG"/>
@@ -310,7 +309,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="449"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="E1I-uQ-prm">
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="E1I-uQ-prm" customClass="SexyView" customModule="Barkd1" customModuleProvider="target">
                                                     <rect key="frame" x="8" y="8" width="359" height="433"/>
                                                     <subviews>
                                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Golden" translatesAutoresizingMaskIntoConstraints="NO" id="tbl-Pp-5r3">
@@ -320,14 +319,14 @@
                                                                 <constraint firstAttribute="height" constant="250" id="oud-a8-WHx"/>
                                                             </constraints>
                                                         </imageView>
-                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Screen Shot 2017-03-16 at 10.54.33 AM" translatesAutoresizingMaskIntoConstraints="NO" id="pXA-CN-963">
+                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Screen Shot 2017-03-16 at 10.54.33 AM" translatesAutoresizingMaskIntoConstraints="NO" id="pXA-CN-963" customClass="CircleView" customModule="Barkd1" customModuleProvider="target">
                                                             <rect key="frame" x="8" y="8" width="50" height="50"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" constant="50" id="91n-pM-ImZ"/>
                                                                 <constraint firstAttribute="height" constant="50" id="lln-Hl-Mp2"/>
                                                             </constraints>
                                                         </imageView>
-                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="empty-heart" translatesAutoresizingMaskIntoConstraints="NO" id="1I6-nZ-wZB">
+                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="empty-heart" translatesAutoresizingMaskIntoConstraints="NO" id="1I6-nZ-wZB">
                                                             <rect key="frame" x="301" y="8" width="50" height="50"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" constant="50" id="6Kt-gJ-RWS"/>
@@ -415,10 +414,10 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Oqx-o9-kZO">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Oqx-o9-kZO" customClass="SexyView" customModule="Barkd1" customModuleProvider="target">
                                 <rect key="frame" x="16" y="65" width="343" height="69"/>
                                 <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="add-image" translatesAutoresizingMaskIntoConstraints="NO" id="hUw-5g-yfa">
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="add-image" translatesAutoresizingMaskIntoConstraints="NO" id="hUw-5g-yfa" customClass="CircleView" customModule="Barkd1" customModuleProvider="target">
                                         <rect key="frame" x="8" y="12" width="50" height="50"/>
                                         <color key="backgroundColor" red="0.078431372550000003" green="0.1058823529" blue="0.53725490200000003" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
@@ -426,7 +425,7 @@
                                             <constraint firstAttribute="width" constant="50" id="9ng-QF-g9W"/>
                                         </constraints>
                                     </imageView>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tS1-4Y-AdO">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tS1-4Y-AdO" customClass="RoundButton" customModule="Barkd1" customModuleProvider="target">
                                         <rect key="frame" x="7" y="12" width="50" height="50"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="50" id="YK8-3r-mAS"/>
@@ -445,7 +444,7 @@
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits"/>
                                             </textField>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bfd-Db-UJg">
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bfd-Db-UJg" customClass="RoundButton" customModule="Barkd1" customModuleProvider="target">
                                                 <rect key="frame" x="219" y="0.0" width="50" height="50"/>
                                                 <color key="backgroundColor" red="0.0" green="0.50196081400000003" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                 <constraints>
@@ -474,6 +473,26 @@
                                     <constraint firstAttribute="trailing" secondItem="kAc-YZ-wri" secondAttribute="trailing" constant="8" id="y8G-e3-cp0"/>
                                 </constraints>
                             </view>
+                            <stackView opaque="NO" contentMode="scaleToFill" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="Dsz-Sv-UVV">
+                                <rect key="frame" x="125" y="20" width="124" height="21"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hi," textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="C4o-f9-2I9">
+                                        <rect key="frame" x="0.0" y="0.0" width="21" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Current User" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZUh-E3-YUF">
+                                        <rect key="frame" x="25" y="0.0" width="99" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="21" id="GWV-cg-E91"/>
+                                </constraints>
+                            </stackView>
                         </subviews>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <constraints>
@@ -481,18 +500,22 @@
                             <constraint firstAttribute="trailing" secondItem="smy-kC-jUf" secondAttribute="trailing" id="2p7-xD-s0h"/>
                             <constraint firstItem="smy-kC-jUf" firstAttribute="top" secondItem="Oqx-o9-kZO" secondAttribute="bottom" constant="8" id="4kx-WT-gOi"/>
                             <constraint firstItem="Oqx-o9-kZO" firstAttribute="top" secondItem="HPP-P4-Eqv" secondAttribute="bottom" constant="3" id="4qw-Bu-yvc"/>
+                            <constraint firstItem="Dsz-Sv-UVV" firstAttribute="leading" secondItem="Vl3-yC-vzL" secondAttribute="trailing" constant="54" id="5K0-J2-00l"/>
                             <constraint firstItem="Vl3-yC-vzL" firstAttribute="leading" secondItem="r3X-CX-Nue" secondAttribute="leadingMargin" id="5cw-cV-ddn"/>
+                            <constraint firstItem="Dsz-Sv-UVV" firstAttribute="top" secondItem="KdR-Dx-w1d" secondAttribute="bottom" id="87O-qA-O0j"/>
                             <constraint firstItem="HPP-P4-Eqv" firstAttribute="trailing" secondItem="r3X-CX-Nue" secondAttribute="trailingMargin" id="GLE-TX-Rb2"/>
                             <constraint firstItem="kbh-Yr-sqG" firstAttribute="top" secondItem="smy-kC-jUf" secondAttribute="bottom" id="LZx-pe-VBH"/>
                             <constraint firstItem="KQo-qu-RAq" firstAttribute="top" secondItem="r3X-CX-Nue" secondAttribute="topMargin" constant="17" id="Lkf-5M-FEu"/>
                             <constraint firstItem="KQo-qu-RAq" firstAttribute="trailing" secondItem="r3X-CX-Nue" secondAttribute="trailingMargin" id="WaQ-ha-Za1"/>
                             <constraint firstItem="smy-kC-jUf" firstAttribute="leading" secondItem="r3X-CX-Nue" secondAttribute="leading" id="ZG9-Wn-F0q"/>
                             <constraint firstItem="Oqx-o9-kZO" firstAttribute="leading" secondItem="r3X-CX-Nue" secondAttribute="leadingMargin" id="kiT-kx-4BW"/>
+                            <constraint firstItem="HPP-P4-Eqv" firstAttribute="leading" secondItem="Dsz-Sv-UVV" secondAttribute="trailing" constant="65" id="pFo-CV-tWH"/>
                             <constraint firstItem="Vl3-yC-vzL" firstAttribute="top" secondItem="r3X-CX-Nue" secondAttribute="topMargin" constant="11" id="qWT-ce-ZTb"/>
                             <constraint firstItem="Oqx-o9-kZO" firstAttribute="trailing" secondItem="r3X-CX-Nue" secondAttribute="trailingMargin" id="u4M-Te-71T"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="currentUser" destination="ZUh-E3-YUF" id="Vge-bf-trO"/>
                         <outlet property="postCaption" destination="eJ1-jN-Zv0" id="soW-0o-eoe"/>
                         <outlet property="profilePic" destination="HPP-P4-Eqv" id="vW0-xS-571"/>
                         <outlet property="tableView" destination="smy-kC-jUf" id="8ef-e8-lv2"/>
@@ -605,7 +628,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences" secureTextEntry="YES"/>
                             </textView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Rad-8O-4xD">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Rad-8O-4xD" customClass="SexyButton" customModule="Barkd1" customModuleProvider="target">
                                 <rect key="frame" x="78" y="624" width="218" height="30"/>
                                 <color key="backgroundColor" red="0.337291652" green="0.62529191319999999" blue="0.97254901959999995" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
