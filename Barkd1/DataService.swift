@@ -38,8 +38,6 @@ class DataService: UIViewController {
     var REF_POST_IMAGES: FIRStorageReference {
         return _REF_POST_IMAGES
     }
-    
-    // Error in unwrapping optional value when posting user image? // 
      
      var REF_CURRENT_USERS: FIRDatabaseReference {
      let uid = KeychainWrapper.standard.string(forKey: KEY_UID)

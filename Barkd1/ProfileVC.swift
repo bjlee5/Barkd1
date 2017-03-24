@@ -75,5 +75,9 @@ class ProfileVC: UIViewController {
     }
     @IBAction func updateProfile(_ sender: Any) {
     }
+    @IBAction func findFriendsPrs(_ sender: Any) {
+        let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "UsersVC")
+        self.present(vc, animated: true, completion: nil)
+    }
 
 }

@@ -34,3 +34,11 @@ struct User {
     }
     
 }
+
+class Users: NSObject {
+    
+    var userID: String!
+    var username: String!
+    var imagePath: String!
+    
+}

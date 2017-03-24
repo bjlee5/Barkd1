@@ -48,7 +48,7 @@ class PostCell: UITableViewCell {
     }
 //
     
-    func configureCell(post: Post, img: UIImage? = nil) {
+    func configureCell(post: Post, img: UIImage? = nil, proImg: UIImage? = nil) {
         
         self.post = post
         self.likesRef = DataService.ds.REF_CURRENT_USERS.child("likes").child(post.postKey)
@@ -80,6 +80,28 @@ class PostCell: UITableViewCell {
                     
                 }
             })
+            
+            if proImg != nil {
+                    self.profilePic.image = proImg
+                } else {
+                    let ref = FIRStorage.storage().reference(forURL: post.profilePicURL)
+                    ref.data(withMaxSize: 2 * 1024 * 1024, completion: { (data, error) in
+                        if error != nil {
+                            print("BRIAN: Unable to download image from Firebase")
+                        } else {
+                            print("Image downloaded successfully")
+                            if let imgData = data {
+                                if let proImg = UIImage(data: imgData) {
+                                    self.profilePic.image = proImg
+                                    FeedVC.imageCache.setObject(proImg, forKey: post.profilePicURL as NSString!)
+                                }
+                            }
+                            
+                            
+                        }
+                    })
+                    
+                }
             
         }
         

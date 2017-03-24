@@ -22,6 +22,8 @@
 		D0B3FE7D1E7C32B000D5BF86 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D0B3FE7C1E7C32B000D5BF86 /* GoogleService-Info.plist */; };
 		D0B3FE7F1E7C4AE600D5BF86 /* ProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0B3FE7E1E7C4AE600D5BF86 /* ProfileVC.swift */; };
 		D0B3FE811E7C53D600D5BF86 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0B3FE801E7C53D600D5BF86 /* User.swift */; };
+		D0BEB0501E8482B800685D60 /* UsersVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0BEB04F1E8482B800685D60 /* UsersVC.swift */; };
+		D0BEB0521E855B4100685D60 /* UserCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0BEB0511E855B4100685D60 /* UserCell.swift */; };
 		D0C413C31E8320B900A6AA24 /* SexyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0C413C21E8320B900A6AA24 /* SexyView.swift */; };
 		D0C413C51E8320EF00A6AA24 /* CircleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0C413C41E8320EF00A6AA24 /* CircleView.swift */; };
 		D0C413C71E83211300A6AA24 /* SexyButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0C413C61E83211300A6AA24 /* SexyButton.swift */; };
@@ -50,6 +52,8 @@
 		D0B3FE7C1E7C32B000D5BF86 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		D0B3FE7E1E7C4AE600D5BF86 /* ProfileVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileVC.swift; sourceTree = "<group>"; };
 		D0B3FE801E7C53D600D5BF86 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		D0BEB04F1E8482B800685D60 /* UsersVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UsersVC.swift; sourceTree = "<group>"; };
+		D0BEB0511E855B4100685D60 /* UserCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserCell.swift; sourceTree = "<group>"; };
 		D0C413C21E8320B900A6AA24 /* SexyView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SexyView.swift; sourceTree = "<group>"; };
 		D0C413C41E8320EF00A6AA24 /* CircleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CircleView.swift; sourceTree = "<group>"; };
 		D0C413C61E83211300A6AA24 /* SexyButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SexyButton.swift; sourceTree = "<group>"; };
@@ -131,6 +135,7 @@
 				D0B3FE741E7C24A700D5BF86 /* FeedVC.swift */,
 				D0B3FE761E7C24CA00D5BF86 /* NewUserVC.swift */,
 				D0B3FE7E1E7C4AE600D5BF86 /* ProfileVC.swift */,
+				D0BEB04F1E8482B800685D60 /* UsersVC.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -148,6 +153,7 @@
 			isa = PBXGroup;
 			children = (
 				D061A7061E7DD91F00C18581 /* PostCell.swift */,
+				D0BEB0511E855B4100685D60 /* UserCell.swift */,
 				D0C413C21E8320B900A6AA24 /* SexyView.swift */,
 				D0C413C41E8320EF00A6AA24 /* CircleView.swift */,
 				D0C413C61E83211300A6AA24 /* SexyButton.swift */,
@@ -302,6 +308,7 @@
 				D061A7091E7DDA3F00C18581 /* Post.swift in Sources */,
 				D0B3FE7B1E7C250800D5BF86 /* DataService.swift in Sources */,
 				D0C413C91E83217500A6AA24 /* SexyField.swift in Sources */,
+				D0BEB0501E8482B800685D60 /* UsersVC.swift in Sources */,
 				D0B3FE751E7C24A700D5BF86 /* FeedVC.swift in Sources */,
 				D061A7071E7DD91F00C18581 /* PostCell.swift in Sources */,
 				D0C413C31E8320B900A6AA24 /* SexyView.swift in Sources */,
@@ -310,6 +317,7 @@
 				D0B3FE7F1E7C4AE600D5BF86 /* ProfileVC.swift in Sources */,
 				D0C413C51E8320EF00A6AA24 /* CircleView.swift in Sources */,
 				D0B3FE811E7C53D600D5BF86 /* User.swift in Sources */,
+				D0BEB0521E855B4100685D60 /* UserCell.swift in Sources */,
 				D0B3FE5B1E7C242200D5BF86 /* LogInVC.swift in Sources */,
 				D0B3FE591E7C242200D5BF86 /* AppDelegate.swift in Sources */,
 				D0B3FE791E7C24EA00D5BF86 /* Constants.swift in Sources */,

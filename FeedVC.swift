@@ -13,6 +13,12 @@ import Firebase
 import SwiftKeychainWrapper
 
 class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    
+    // Crash when trying to add profile pic's to the feed ...
+    
+    // BRIAN: Successfully printed image to Firebase
+    // 2017-03-22 18:08:23.380 Barkd1[44447:1778331] *** Terminating app due to uncaught exception 'InvalidFirebaseData', reason: '(setValue:) Cannot store object of type UIImage at profilePicURL. Can only store objects of type NSNumber, NSString, NSDictionary, and NSArray.'
+    // *** First throw call stack:
 
     
     // Refactor this storage ref using DataService // 
@@ -24,6 +30,7 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UIIm
     var storageRef: FIRStorage {
         return FIRStorage.storage()
     }
+    let userRef = DataService.ds.REF_BASE.child("users/\(FIRAuth.auth()!.currentUser!.uid)")
     
     @IBOutlet weak var profilePic: UIImageView!
     @IBOutlet weak var tableView: UITableView!
@@ -82,8 +89,6 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UIIm
     
     // This is the same function (basically) as appears in ProfileVC, look for a way to refactor this code somehow... //
     
-    // Loading Currnet user // - This is causing the app to crash bc for whatever reason the loadUserInfo() for the profile pic in the side is calling before the user is technically signed in. When I remove this function the user signs in fine. 
-    
     /*
     
     let ref = FIRStorage.storage().reference(forURL: post.imageURL)
@@ -107,7 +112,6 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UIIm
     
 
     func loadUserInfo(){
-        let userRef = DataService.ds.REF_BASE.child("users/\(FIRAuth.auth()!.currentUser!.uid)")
         userRef.observe(.value, with: { (snapshot) in
             
             let user = User(snapshot: snapshot)
@@ -204,12 +208,26 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UIIm
         
     }
     
+                /* self.storageRef.reference(forURL: imageURL).data(withMaxSize: 1 * 1024 * 1024, completion: { (imageData, error) in
+                    if error == nil {
+                        DispatchQueue.main.async {
+                            if let data = imageData {
+                                self.profilePic.image = UIImage(data: data)
+                            }
+                        }
+                    } else {
+                        print(error!.localizedDescription)
+                    }
+                }) */
+
+    
     func postToFirebase(imgUrl: String) {
         let post: Dictionary<String, Any> = [
             "caption": postCaption.text!,
             "imageURL": imgUrl,
             "likes": 0,
-            "postUser": currentUser.text!
+            "postUser": currentUser.text!,
+            "profilePicURL": profilePic.image!
         ]
         
         
