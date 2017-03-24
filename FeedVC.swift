@@ -13,6 +13,10 @@ import Firebase
 import SwiftKeychainWrapper
 
 class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+
+    
+    // TO DO: Try using nil coelessing operator for if let statements concerning current username and e-mail address, profilePic & default picture
+    
     
     // Crash when trying to add profile pic's to the feed ...
     
@@ -29,7 +33,9 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UIIm
     var imageSelected = false
     var storageRef: FIRStorage {
         return FIRStorage.storage()
+        
     }
+    /// Referencing the Storage DB then, current User
     let userRef = DataService.ds.REF_BASE.child("users/\(FIRAuth.auth()!.currentUser!.uid)")
     
     @IBOutlet weak var profilePic: UIImageView!
@@ -87,37 +93,15 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UIIm
         }
     }
     
-    // This is the same function (basically) as appears in ProfileVC, look for a way to refactor this code somehow... //
-    
-    /*
-    
-    let ref = FIRStorage.storage().reference(forURL: post.imageURL)
-    ref.data(withMaxSize: 2 * 1024 * 1024, completion: { (data, error) in
-    if error != nil {
-    print("BRIAN: Unable to download image from Firebase")
-    } else {
-    print("Image downloaded successfully")
-    if let imgData = data {
-    if let img = UIImage(data: imgData) {
-    self.postPic.image = img
-    FeedVC.imageCache.setObject(img, forKey: post.imageURL as NSString!)
-    }
-    }
-    
-    
-    }
-    })
- */
- 
-    
-
-    func loadUserInfo(){
+  
+   func loadUserInfo(){
         userRef.observe(.value, with: { (snapshot) in
             
-            let user = User(snapshot: snapshot)
+            let user = Users(snapshot: snapshot)
             let imageURL = user.photoURL!
             self.currentUser.text = user.username
             
+            /// We are downloading the current user's ImageURL then converting it using "data" to the UIImage which takes a property of data
             self.storageRef.reference(forURL: imageURL).data(withMaxSize: 1 * 1024 * 1024, completion: { (imgData, error) in
                 if error == nil {
                     DispatchQueue.main.async {
@@ -180,6 +164,7 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UIIm
             print("BRIAN: Caption must be entered")
             return
         }
+        
         guard let img = userPost.image, imageSelected == true else {
             print("BRIAN: An image must be selected")
             return
@@ -208,26 +193,14 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UIIm
         
     }
     
-                /* self.storageRef.reference(forURL: imageURL).data(withMaxSize: 1 * 1024 * 1024, completion: { (imageData, error) in
-                    if error == nil {
-                        DispatchQueue.main.async {
-                            if let data = imageData {
-                                self.profilePic.image = UIImage(data: data)
-                            }
-                        }
-                    } else {
-                        print(error!.localizedDescription)
-                    }
-                }) */
-
-    
     func postToFirebase(imgUrl: String) {
+  
         let post: Dictionary<String, Any> = [
             "caption": postCaption.text!,
             "imageURL": imgUrl,
             "likes": 0,
-            "postUser": currentUser.text!,
-            "profilePicURL": profilePic.image!
+            "postUser": currentUser.text!
+            /* "profilePicURL": profilePic.image! */
         ]
         
         
@@ -263,4 +236,4 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UIIm
         let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ProfileVC")
         self.present(vc, animated: true, completion: nil)
     }
-}
+} 

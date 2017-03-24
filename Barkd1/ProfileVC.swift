@@ -34,7 +34,7 @@ class ProfileVC: UIViewController {
         let userRef = DataService.ds.REF_BASE.child("users/\(FIRAuth.auth()!.currentUser!.uid)")
         userRef.observe(.value, with: { (snapshot) in
             
-            let user = User(snapshot: snapshot)
+            let user = Users(snapshot: snapshot)
             self.usernameLabel.text = user.username
             self.bioLabel.text = user.bio
             self.emailLabel.text = user.email
@@ -74,10 +74,6 @@ class ProfileVC: UIViewController {
     @IBAction func uploadPic(_ sender: Any) {
     }
     @IBAction func updateProfile(_ sender: Any) {
-    }
-    @IBAction func findFriendsPrs(_ sender: Any) {
-        let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "UsersVC")
-        self.present(vc, animated: true, completion: nil)
     }
 
 }

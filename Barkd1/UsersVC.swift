@@ -34,12 +34,13 @@ class UsersVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
             for (_, value) in users {
                 if let uid = value["uid"] as? String {
                     if uid != FIRAuth.auth()!.currentUser!.uid {
-                        let userToShow = Users()
-                        if let username = value["username"] as? String, let imagePath = value["photoURL"] as? String {
+                        var userToShow = Users(snapshot: snapshot)
+                        if let username = value["username"] as? String, let photoURL = value["photoURL"] as? String {
                             userToShow.username = username
-                            userToShow.imagePath = imagePath
-                            userToShow.userID = uid
+                            userToShow.photoURL = photoURL
+                            userToShow.uid = uid
                             self.users.append(userToShow)
+                            print("BRIAN: All of the users have been retrieved")
                         }
                     }
                 }
@@ -63,8 +64,8 @@ class UsersVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         // Code is crashing here - unwrapping the optional value of username?
         
         cell.userName.text = users[indexPath.row].username
-        cell.userID = users[indexPath.row].userID
-        cell.userImage.downloadImage(from: self.users[indexPath.row].imagePath!)
+        cell.userID = users[indexPath.row].uid
+        cell.userImage.downloadImage(from: self.users[indexPath.row].photoURL!)
         checkFollowing(indexPath: indexPath)
         
         return cell
@@ -81,11 +82,11 @@ class UsersVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         ref.child("users").child(uid).child("following").queryOrderedByKey().observeSingleEvent(of: .value, with: { snapshot in
             if let following = snapshot.value as? [String: AnyObject] {
                 for (ke, value) in following {
-                    if value as! String == self.users[indexPath.row].userID {
+                    if value as! String == self.users[indexPath.row].uid {
                         isFollower = true
                         
                         ref.child("users").child(uid).child("following/\(ke)").removeValue()
-                        ref.child("users").child(self.users[indexPath.row].userID).child("followers/\(ke)").removeValue()
+                        ref.child("users").child(self.users[indexPath.row].uid).child("followers/\(ke)").removeValue()
                         
                         
                         self.tableView.cellForRow(at: indexPath)?.accessoryType = .none
@@ -94,11 +95,11 @@ class UsersVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
             }
             
             if !isFollower {
-                let following = ["following/\(key)" : self.users[indexPath.row].userID]
+                let following = ["following/\(key)" : self.users[indexPath.row].uid]
                 let followers = ["followers/\(key)" : uid]
                 
                 ref.child("users").child(uid).updateChildValues(following)
-                ref.child("users").child(self.users[indexPath.row].userID).updateChildValues(followers)
+                ref.child("users").child(self.users[indexPath.row].uid).updateChildValues(followers)
                 
                 self.tableView.cellForRow(at: indexPath)?.accessoryType = .checkmark
                 
@@ -118,7 +119,7 @@ class UsersVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         ref.child("users").child(uid).child("following").queryOrderedByKey().observeSingleEvent(of: .value, with: { snapshot in
             if let following = snapshot.value as? [String: AnyObject] {
                 for (_, value) in following {
-                    if value as! String == self.users[indexPath.row].userID {
+                    if value as! String == self.users[indexPath.row].uid {
                         self.tableView.cellForRow(at: indexPath)?.accessoryType = .checkmark
                     }
                 }
