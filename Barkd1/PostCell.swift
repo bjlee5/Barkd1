@@ -21,6 +21,9 @@ class PostCell: UITableViewCell {
     
     var post: Post!
     var likesRef: FIRDatabaseReference!
+    var storageRef: FIRStorage {
+        return FIRStorage.storage()
+    }
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -61,6 +64,29 @@ class PostCell: UITableViewCell {
             self.username.text = "\(post.postUser)"
         })
         
+        /*
+        
+        let proRef = DataService.ds.REF_BASE.child("users/\(FIRAuth.auth()!.currentUser!.photoURL)")
+        proRef.observe(.value, with: { (snapshot) in
+            
+            let user1 = Users(snapshot: snapshot)
+            let imageURL = user1.photoURL!
+            /// We are downloading the current user's ImageURL then converting it using "data" to the UIImage which takes a property of data
+            self.storageRef.reference(forURL: imageURL).data(withMaxSize: 1 * 1024 * 1024, completion: { (imageData, error) in
+                if error == nil {
+                    DispatchQueue.main.async {
+                        if let data = imageData {
+                            self.profilePic.image = UIImage(data: data)
+                        }
+                    }
+                } else {
+                    print(error!.localizedDescription)
+                }
+            })
+        })
+        
+        */
+        
         if img != nil {
             self.postPic.image = img
         } else {
@@ -81,7 +107,7 @@ class PostCell: UITableViewCell {
                 }
             })
             
-           /* if proImg != nil {
+          /* if proImg != nil {
                     self.profilePic.image = proImg
                 } else {
                     let ref = FIRStorage.storage().reference(forURL: post.profilePicURL)
@@ -127,5 +153,4 @@ class PostCell: UITableViewCell {
             }
         })
     }
-    
 }

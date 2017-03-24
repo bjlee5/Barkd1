@@ -33,7 +33,6 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UIIm
     var imageSelected = false
     var storageRef: FIRStorage {
         return FIRStorage.storage()
-        
     }
     /// Referencing the Storage DB then, current User
     let userRef = DataService.ds.REF_BASE.child("users/\(FIRAuth.auth()!.currentUser!.uid)")
@@ -127,7 +126,7 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UIIm
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let post = posts[indexPath.row]
+    /*    let post = posts[indexPath.row]
         
         if let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as? PostCell {
             
@@ -137,11 +136,11 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UIIm
                 cell.configureCell(post: post)
             }
             return cell
-        } else {
+        } else { */
             
             return PostCell()
             
-        }
+        
     }
 
 
@@ -194,13 +193,16 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UIIm
     }
     
     func postToFirebase(imgUrl: String) {
-  
+        
+        // Issues with this line of code- says that this child value is invalid? How can we refactor this in order to reference the currentUser's photoURL? // 
+        
+        let profilePic = DataService.ds.REF_BASE.child("users/\(FIRAuth.auth()!.currentUser!.photoURL)")
         let post: Dictionary<String, Any> = [
             "caption": postCaption.text!,
             "imageURL": imgUrl,
             "likes": 0,
-            "postUser": currentUser.text!
-            /* "profilePicURL": profilePic.image! */
+            "postUser": currentUser.text!,
+            "profilePicURL": profilePic
         ]
         
         
