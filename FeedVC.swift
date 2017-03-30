@@ -229,13 +229,16 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UIIm
     
     func postToFirebase(imgUrl: String, imgUrlr: String) {
         
+        let currentDate = NSDate()
+        let realDate = String(describing: currentDate)
+        
         let post: Dictionary<String, Any> = [
             "caption": postCaption.text!,
             "imageURL": imgUrl,
             "likes": 0,
             "postUser": currentUser.text!,
             "profilePicURL": imgUrlr,
-            "currentDate": NSDate()
+            "currentDate": realDate 
         ]
         
         
