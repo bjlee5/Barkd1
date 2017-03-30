@@ -128,21 +128,21 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UIIm
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-    /*    let post = posts[indexPath.row]
+        let post = posts[indexPath.row]
         
         if let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as? PostCell {
             
-            if let img = FeedVC.imageCache.object(forKey: post.imageURL as NSString!) {
-                cell.configureCell(post: post, img: img)
+            if let img = FeedVC.imageCache.object(forKey: post.imageURL as NSString!), let proImg = FeedVC.imageCache.object(forKey: post.profilePicURL as NSString!) {
+                cell.configureCell(post: post, img: img, proImg: proImg)
             } else {
                 cell.configureCell(post: post)
             }
             return cell
-        } else { */
+        } else {
             
             return PostCell()
             
-        
+        }
     }
 
 
