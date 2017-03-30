@@ -234,7 +234,8 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UIIm
             "imageURL": imgUrl,
             "likes": 0,
             "postUser": currentUser.text!,
-            "profilePicURL": imgUrlr
+            "profilePicURL": imgUrlr,
+            "currentDate": NSDate()
         ]
         
         

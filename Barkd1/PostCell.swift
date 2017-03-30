@@ -9,6 +9,7 @@
 
 import UIKit
 import Firebase
+import Foundation 
 
 class PostCell: UITableViewCell {
 
@@ -18,13 +19,14 @@ class PostCell: UITableViewCell {
     @IBOutlet weak var postPic: UIImageView!
     @IBOutlet weak var postText: UITextView!
     @IBOutlet weak var likesNumber: UILabel!
+    @IBOutlet weak var dateLabel: UILabel!
     
     var post: Post!
     var likesRef: FIRDatabaseReference!
     var storageRef: FIRStorage {
         return FIRStorage.storage()
     }
-    
+  
     override func awakeFromNib() {
         super.awakeFromNib()
         
@@ -33,6 +35,9 @@ class PostCell: UITableViewCell {
         tap.numberOfTapsRequired = 1
         likesImage.addGestureRecognizer(tap)
         likesImage.isUserInteractionEnabled = true
+        
+        let currentDate = NSDate()
+        dateLabel.text = "\(currentDate)"
         
     }
     
@@ -57,6 +62,7 @@ class PostCell: UITableViewCell {
         self.likesRef = DataService.ds.REF_CURRENT_USERS.child("likes").child(post.postKey)
         self.postText.text = post.caption
         self.likesNumber.text = "\(post.likes)"
+        self.dateLabel.text = post.currentDate
         
         let userRef = DataService.ds.REF_BASE.child("users/\(FIRAuth.auth()!.currentUser!.uid)")
         userRef.observe(.value, with: { (snapshot) in
