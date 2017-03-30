@@ -87,13 +87,13 @@ class PostCell: UITableViewCell {
                     self.profilePic.image = proImg
                 } else {
                     let ref = FIRStorage.storage().reference(forURL: post.profilePicURL)
-                    ref.data(withMaxSize: 2 * 1024 * 1024, completion: { (data, error) in
+                    ref.data(withMaxSize: 2 * 1024 * 1024, completion: { (proData, error) in
                         if error != nil {
                             print("BRIAN: Unable to download image from Firebase")
                         } else {
                             print("Image downloaded successfully")
-                            if let imgData = data {
-                                if let proImg = UIImage(data: imgData) {
+                            if let proimgData = proData {
+                                if let proImg = UIImage(data: proimgData) {
                                     self.profilePic.image = proImg
                                     FeedVC.imageCache.setObject(proImg, forKey: post.profilePicURL as NSString!)
                                 }
