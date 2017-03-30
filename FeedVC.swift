@@ -31,6 +31,7 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UIIm
     static var imageCache: NSCache<NSString, UIImage> = NSCache()
     var imagePicker: UIImagePickerController!
     var imageSelected = false
+    var profilePicLoaded = false
     var storageRef: FIRStorage {
         return FIRStorage.storage()
     }
@@ -106,6 +107,7 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UIIm
                     DispatchQueue.main.async {
                         if let data = imgData {
                             self.profilePic.image = UIImage(data: data)
+                            self.profilePicLoaded = true
                         }
                     }
                 } else {
@@ -169,6 +171,11 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UIIm
             return
         }
         
+        guard let proImg = profilePic.image, profilePicLoaded == true else {
+            print("BRIAN: The user has no profile pic!")
+            return
+        }
+        
         if let imgData = UIImageJPEGRepresentation(img, 0.2) {
             
             let imgUid = NSUUID().uuidString
@@ -182,27 +189,52 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UIIm
                     print("BRIAN: Successfully printed image to Firebase")
                     let downloadURL = metdata?.downloadURL()?.absoluteString
                     if let url = downloadURL {
-                        self.postToFirebase(imgUrl: url)
+                        
+                        if let imgDatar = UIImageJPEGRepresentation(proImg, 0.2) {
+                            
+                            let imgUidr = NSUUID().uuidString
+                            let metadatar = FIRStorageMetadata()
+                            metadatar.contentType = "image/jpeg"
+                            
+                            DataService.ds.REF_PRO_IMAGES.child(imgUidr).put(imgDatar, metadata: metadatar) { (metdata, error) in
+                                if error != nil {
+                                    print("BRIAN: Unable to upload image to Firebase storage")
+                                } else {
+                                    print("BRIAN: Successfully printed image to Firebase")
+                                    let downloadURL = metdata?.downloadURL()?.absoluteString
+                                    if let urlr = downloadURL {
+                                        self.postToFirebase(imgUrl: url, imgUrlr: urlr)
+                                    }
+                                    
+                                }
+                                
+                            }
+                        }
+                        
                     }
-                    
+                        
                 }
-                
+                    
             }
+                
+        }
+    }
+        
+        func imagesForPost(imgUrl: String) -> String {
+            let mainImg = imgUrl
+            return mainImg
         }
         
-    }
+
     
-    func postToFirebase(imgUrl: String) {
+    func postToFirebase(imgUrl: String, imgUrlr: String) {
         
-        // Issues with this line of code- says that this child value is invalid? How can we refactor this in order to reference the currentUser's photoURL? //
-        
-        let profilePic = DataService.ds.REF_BASE.child("users/\(FIRAuth.auth()!.currentUser!.photoURL)")
         let post: Dictionary<String, Any> = [
             "caption": postCaption.text!,
             "imageURL": imgUrl,
             "likes": 0,
             "postUser": currentUser.text!,
-            "profilePicURL": profilePic
+            "profilePicURL": imgUrlr
         ]
         
         

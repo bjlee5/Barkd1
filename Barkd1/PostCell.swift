@@ -64,9 +64,9 @@ class PostCell: UITableViewCell {
             self.username.text = "\(post.postUser)"
         })
         
-        /*
         
-        let proRef = DataService.ds.REF_BASE.child("users/\(FIRAuth.auth()!.currentUser!.photoURL)")
+        
+    /*    let proRef = DataService.ds.REF_BASE.child("users/\(FIRAuth.auth()!.currentUser!.photoURL)")
         proRef.observe(.value, with: { (snapshot) in
             
             let user1 = Users(snapshot: snapshot)
@@ -84,8 +84,8 @@ class PostCell: UITableViewCell {
                 }
             })
         })
-        
-        */
+       */
+     
         
         if img != nil {
             self.postPic.image = img
@@ -107,7 +107,7 @@ class PostCell: UITableViewCell {
                 }
             })
             
-          /* if proImg != nil {
+      /*     if proImg != nil {
                     self.profilePic.image = proImg
                 } else {
                     let ref = FIRStorage.storage().reference(forURL: post.profilePicURL)

@@ -81,34 +81,24 @@ class NewUserVC: UIViewController, UIImagePickerControllerDelegate, UINavigation
     
     func setUserInfo(user: FIRUser!, email: String, password: String, username: String, bio: String, proPic: NSData!) {
         
-        let imagePath = "profileImage\(user.uid)/.userPic.jpeg"
-        
-        let imageRef = STORAGE_REF.child(imagePath)
-        
-        let metaData = FIRStorageMetadata()
-        metaData.contentType = "image/jpeg"
-        
-        // Updates from SocialAp1
         let imgUid = NSUUID().uuidString
         let metadata = FIRStorageMetadata()
         metadata.contentType = "image/jpeg"
-        //
+
         
-        DataService.ds.REF_PRO_IMAGES.put(proPic as Data, metadata: metaData) { (newMetaData, error) in
+        DataService.ds.REF_PRO_IMAGES.child(imgUid).put(proPic as Data, metadata: metadata) { (newMetaData, error) in
             
             if error != nil {
                 
                 print("BRIAN: Error uploading profile Pic to Firebase")
                 
             } else {
-                
-                /*let changeRequest = user.profileChangeRequest()
-                changeRequest.displayName = username */
+                print("BRIAN: New metadata stuff's workin.")
                 
                 let photoURL = newMetaData?.downloadURL()?.absoluteString
                 if let url = photoURL {
                  
-                       self.saveUserInfo(user: user, username: username, password: password, bio: bio)
+                    self.saveUserInfo(user: user, username: username, password: password, bio: bio, image: url)
                     
                 }
                 
@@ -118,9 +108,9 @@ class NewUserVC: UIViewController, UIImagePickerControllerDelegate, UINavigation
     
     // This is func completeSignInID.createFIRDBuser from SocialApp1. Instead of only providing "provider": user.providerID - there is additional information provided - for the username, profile pic, etc. We need to provide a place for this information to be input. //
     
-    private func saveUserInfo(user: FIRUser!, username: String, password: String, bio: String) {
+    private func saveUserInfo(user: FIRUser!, username: String, password: String, bio: String, image: String) {
         
-        let userInfo = ["email": user.email!, "username": username , "uid": user.uid , "photoURL": String(describing: user.photoURL!), "bio": bio, "provider": user.providerID]
+        let userInfo = ["email": user.email!, "username": username , "uid": user.uid , "photoURL": image, "bio": bio, "provider": user.providerID]
         
         self.completeSignIn(id: user.uid, userData: userInfo)
         print("BRIAN: User info has been saved to the database")
