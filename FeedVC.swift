@@ -194,7 +194,7 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UIIm
     
     func postToFirebase(imgUrl: String) {
         
-        // Issues with this line of code- says that this child value is invalid? How can we refactor this in order to reference the currentUser's photoURL? // 
+        // Issues with this line of code- says that this child value is invalid? How can we refactor this in order to reference the currentUser's photoURL? //
         
         let profilePic = DataService.ds.REF_BASE.child("users/\(FIRAuth.auth()!.currentUser!.photoURL)")
         let post: Dictionary<String, Any> = [

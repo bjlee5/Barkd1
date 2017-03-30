@@ -88,32 +88,29 @@ class NewUserVC: UIViewController, UIImagePickerControllerDelegate, UINavigation
         let metaData = FIRStorageMetadata()
         metaData.contentType = "image/jpeg"
         
-        imageRef.put(proPic as Data, metadata: metaData) { (newMetaData, error) in
+        // Updates from SocialAp1
+        let imgUid = NSUUID().uuidString
+        let metadata = FIRStorageMetadata()
+        metadata.contentType = "image/jpeg"
+        //
+        
+        DataService.ds.REF_PRO_IMAGES.put(proPic as Data, metadata: metaData) { (newMetaData, error) in
             
             if error != nil {
                 
-                print("BRIAN: Error in setting the user info")
+                print("BRIAN: Error uploading profile Pic to Firebase")
                 
             } else {
                 
-                let changeRequest = user.profileChangeRequest()
-                changeRequest.displayName = username
+                /*let changeRequest = user.profileChangeRequest()
+                changeRequest.displayName = username */
                 
-                if let photoURL = newMetaData!.downloadURL() {
-                    changeRequest.photoURL = photoURL
+                let photoURL = newMetaData?.downloadURL()?.absoluteString
+                if let url = photoURL {
+                 
+                       self.saveUserInfo(user: user, username: username, password: password, bio: bio)
+                    
                 }
-                
-                changeRequest.commitChanges(completion: { (error) in
-                    if error != nil {
-                        
-                        print("BRIAN: Cannot complete change request!")
-                        
-                    } else {
-                        
-                        self.saveUserInfo(user: user, username: username, password: password, bio: bio)
-                        
-                    }
-                })
                 
             }
         }

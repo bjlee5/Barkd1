@@ -22,6 +22,7 @@ class DataService: UIViewController {
     private var _REF_POSTS = DB_BASE.child("posts")
     private var _REF_USERS = DB_BASE.child("users")
     private var _REF_POST_IMAGES = STORAGE_REF.child("post-pics")
+    private var _REF_PRO_IMAGES = STORAGE_REF.child("pro-pics")
     
     var REF_BASE: FIRDatabaseReference {
         return _REF_BASE
@@ -37,6 +38,10 @@ class DataService: UIViewController {
     
     var REF_POST_IMAGES: FIRStorageReference {
         return _REF_POST_IMAGES
+    }
+    
+    var REF_PRO_IMAGES: FIRStorageReference {
+        return _REF_PRO_IMAGES
     }
      
      var REF_CURRENT_USERS: FIRDatabaseReference {
