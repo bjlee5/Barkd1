@@ -11,6 +11,7 @@ import UIKit
 import UIKit
 import Firebase
 import SwiftKeychainWrapper
+import Foundation
 
 class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
@@ -18,12 +19,7 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UIIm
     // TO DO: Try using nil coelessing operator for if let statements concerning current username and e-mail address, profilePic & default picture
     
     
-    // Crash when trying to add profile pic's to the feed ...
-    
-    // BRIAN: Successfully printed image to Firebase
-    // 2017-03-22 18:08:23.380 Barkd1[44447:1778331] *** Terminating app due to uncaught exception 'InvalidFirebaseData', reason: '(setValue:) Cannot store object of type UIImage at profilePicURL. Can only store objects of type NSNumber, NSString, NSDictionary, and NSArray.'
-    // *** First throw call stack:
-
+    // Issues with the ProfilePic - only loads properly sometimes, when going back from Profile screen DOES NOT load. When logging in initially, everything DOES load properly.
     
     // Refactor this storage ref using DataService // 
     
@@ -71,14 +67,16 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UIIm
             }
             
             self.tableView.reloadData()
+            self.posts.sort(by: self.sortDatesFor)
             
         })
         
         // Dismiss Keyboard //
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(UIInputViewController.dismissKeyboard))
         view.addGestureRecognizer(tap)
+     
         
-    }
+    } // End ViewDidLoad
     
     func dismissKeyboard() {
         view.endEditing(true)
@@ -118,7 +116,11 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UIIm
             print(error.localizedDescription)
     }
 }
- 
+    
+    /// Sort Feed of Posts by Current Date
+    func sortDatesFor(this: Post, that: Post) -> Bool {
+        return this.currentDate > that.currentDate
+    }
     
     // User Feed //
     
@@ -146,7 +148,7 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UIIm
     }
 
 
-    // Posting to Firebase //
+    // Configure Firebase Post //
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         if let image = info[UIImagePickerControllerEditedImage] as? UIImage {
@@ -224,13 +226,15 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UIIm
             let mainImg = imgUrl
             return mainImg
         }
-        
+    
+    // Retrieve the Current Date //
 
+    let realDate = DateFormatter.localizedString(from: NSDate() as Date, dateStyle: DateFormatter.Style.short, timeStyle: DateFormatter.Style.short)
+
+    // Posting to Firebase //
     
     func postToFirebase(imgUrl: String, imgUrlr: String) {
         
-        let currentDate = NSDate()
-        let realDate = String(describing: currentDate)
         
         let post: Dictionary<String, Any> = [
             "caption": postCaption.text!,

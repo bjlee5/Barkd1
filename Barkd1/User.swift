@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 import Firebase
 
-// Update ** this is crashing when I navigate to this page for a user who's created an account without one of the required fields. For example, someone logging in via facebook does not have a username or profile pic yet. Or someone creating an account by signing in does not either //
+// App is crashing when unwrapping ["username"] - cannot force unwrap optional value
 
 struct Users {
     
@@ -34,4 +34,5 @@ struct Users {
     }
     
 }
+
 

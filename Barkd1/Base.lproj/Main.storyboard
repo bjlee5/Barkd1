@@ -725,7 +725,7 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="findFriendsPrs:" destination="fQU-0I-igV" eventType="touchUpInside" id="Jjx-Hd-2hl"/>
+                                    <action selector="findFriends:" destination="fQU-0I-igV" eventType="touchUpInside" id="Ed4-kl-81X"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -788,10 +788,10 @@
             </objects>
             <point key="canvasLocation" x="1932" y="138.98050974512745"/>
         </scene>
-        <!--UsersVC-->
+        <!--Current UsersVC-->
         <scene sceneID="pdz-LF-onO">
             <objects>
-                <viewController storyboardIdentifier="UsersVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="3Eo-HA-2hx" customClass="UsersVC" customModule="Barkd1" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="UsersVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="3Eo-HA-2hx" customClass="CurrentUsersVC" customModule="Barkd1" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="4HG-ET-EMx"/>
                         <viewControllerLayoutGuide type="bottom" id="1jl-nJ-OEh"/>
@@ -856,9 +856,6 @@
                                                 <constraint firstItem="yWx-w7-Pb2" firstAttribute="top" secondItem="yg1-a4-Vzr" secondAttribute="topMargin" constant="19" id="rSO-eQ-Rff"/>
                                             </constraints>
                                         </tableViewCellContentView>
-                                        <connections>
-                                            <outlet property="userImage" destination="hcI-bN-IqW" id="jUn-NB-Jf5"/>
-                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
@@ -885,7 +882,7 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="tableView" destination="R4p-sX-rRt" id="I7Y-pb-h7E"/>
+                        <outlet property="tableView" destination="R4p-sX-rRt" id="zxN-9d-Yf0"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Jou-HP-OE5" userLabel="First Responder" sceneMemberID="firstResponder"/>
