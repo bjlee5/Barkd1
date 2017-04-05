@@ -31,6 +31,7 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UIIm
     var storageRef: FIRStorage {
         return FIRStorage.storage()
     }
+    var following = [String]()
     /// Referencing the Storage DB then, current User
     let userRef = DataService.ds.REF_BASE.child("users/\(FIRAuth.auth()!.currentUser!.uid)")
     
@@ -44,6 +45,8 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UIIm
         super.viewDidLoad()
         
         showCurrentUser()
+        loadUserInfo()
+        fetchPosts()
         
         tableView.delegate = self
         tableView.dataSource = self
@@ -51,25 +54,7 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UIIm
         imagePicker = UIImagePickerController()
         imagePicker.delegate = self
         imagePicker.allowsEditing = true
-        
-        
-        DataService.ds.REF_POSTS.observe(.value, with: { (snapshot) in
-            self.posts = []
-            if let snapshot = snapshot.children.allObjects as? [FIRDataSnapshot] {
-                for snap in snapshot {
-                    print("SNAP: \(snap)")
-                    if let postDict = snap.value as? Dictionary<String, AnyObject> {
-                        let key = snap.key
-                        let post = Post(postKey: key, postData: postDict)
-                        self.posts.append(post)
-                    }
-                }
-            }
-            
-            self.tableView.reloadData()
-            self.posts.sort(by: self.sortDatesFor)
-            
-        })
+
         
         // Dismiss Keyboard //
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(UIInputViewController.dismissKeyboard))
@@ -85,7 +70,7 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UIIm
     func showCurrentUser() {
         if FIRAuth.auth()?.currentUser != nil {
             print("BRIAN: There is somebody signed in!!!")
-            loadUserInfo()
+//            loadUserInfo()
         } else {
             print("Aint nobody signed in!!!")
         }
@@ -120,6 +105,66 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UIIm
     /// Sort Feed of Posts by Current Date
     func sortDatesFor(this: Post, that: Post) -> Bool {
         return this.currentDate > that.currentDate
+    }
+    
+    // Show Current User Feed //
+    
+    func followingFriends() {
+        
+    let ref = FIRDatabase.database().reference()
+    ref.child("users").queryOrderedByKey().observeSingleEvent(of: .value, with: { snapshot in
+        
+        let users = snapshot.value as! [String: AnyObject]
+    
+        for (_, value) in users {
+            if let uName = value["username"] as? String {
+                print("BRIAN: \(uName)")
+                self.userRef.observe(.value, with: { (snapshot) in
+                    
+                    let myUser = Users(snapshot: snapshot)
+
+                if uName == myUser.username {
+                    if let followingUsers = value["following"] as? [String: String] {
+                        for (_, user) in followingUsers {
+                            self.following.append(user)
+                    
+                        }
+                    }
+                    
+                    self.following.append((FIRAuth.auth()?.currentUser?.uid)!)
+                    print("BRIAN: You are following these users \(self.following)")
+                    
+                    }
+                })
+            }
+        }
+    })
+}
+    
+    func fetchPosts() {
+        DataService.ds.REF_POSTS.observe(.value, with: { (snapshot) in
+            self.posts = []
+            if let snapshot = snapshot.children.allObjects as? [FIRDataSnapshot] {
+                for snap in snapshot {
+                    print("SNAP: \(snap)")
+
+                    if let postDict = snap.value as? Dictionary<String, AnyObject> {
+                            print("POST: \(postDict)")
+                        let key = snap.key
+                        let post = Post(postKey: key, postData: postDict)
+                        self.posts.append(post)
+                        
+                        
+                    }
+                }
+            }
+            
+            self.tableView.reloadData()
+            self.posts.sort(by: self.sortDatesFor)
+            self.followingFriends()
+            
+        })
+        
     }
     
     // User Feed //

@@ -40,7 +40,7 @@ class ProfileVC: UIViewController {
             self.emailLabel.text = user.email
             let imageURL = user.photoURL!
             
-            // Clean up profilePic is storage - model after the post-pic, which is creating a folder in storage. This is too messy right now.
+        // Clean up profilePic is storage - model after the post-pic, which is creating a folder in storage. This is too messy right now.
             
             self.storageRef.reference(forURL: imageURL).data(withMaxSize: 1 * 1024 * 1024, completion: { (imgData, error) in
                 
@@ -68,15 +68,14 @@ class ProfileVC: UIViewController {
 
 
     @IBAction func backPressed(_ sender: Any) {
-        let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "FeedVC")
-        self.present(vc, animated: true, completion: nil)
+        dismiss(animated: true, completion: nil)
     }
     @IBAction func uploadPic(_ sender: Any) {
     }
     @IBAction func updateProfile(_ sender: Any) {
     }
     @IBAction func findFriends(_ sender: Any) {
-        let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "UsersVC")
+        let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "CurrentUsersVC")
         self.present(vc, animated: true, completion: nil)
     }
 

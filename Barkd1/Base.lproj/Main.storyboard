@@ -596,7 +596,7 @@
                                     <constraint firstAttribute="height" constant="50" id="wGq-eZ-ylr"/>
                                 </constraints>
                             </view>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="user" translatesAutoresizingMaskIntoConstraints="NO" id="Yyc-tL-jB3">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="user" translatesAutoresizingMaskIntoConstraints="NO" id="Yyc-tL-jB3" customClass="CircleView" customModule="Barkd1" customModuleProvider="target">
                                 <rect key="frame" x="112" y="69" width="150" height="150"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="150" id="ehh-bG-7VF"/>
@@ -791,7 +791,7 @@
         <!--Current UsersVC-->
         <scene sceneID="pdz-LF-onO">
             <objects>
-                <viewController storyboardIdentifier="UsersVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="3Eo-HA-2hx" customClass="CurrentUsersVC" customModule="Barkd1" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="CurrentUsersVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="3Eo-HA-2hx" customClass="CurrentUsersVC" customModule="Barkd1" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="4HG-ET-EMx"/>
                         <viewControllerLayoutGuide type="bottom" id="1jl-nJ-OEh"/>
@@ -816,6 +816,9 @@
                                         <state key="normal" title="Back">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
+                                        <connections>
+                                            <action selector="backPress:" destination="3Eo-HA-2hx" eventType="touchUpInside" id="B90-qM-33F"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" red="0.078431372550000003" green="0.1058823529" blue="0.53725490200000003" alpha="1" colorSpace="calibratedRGB"/>
@@ -834,7 +837,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="74"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Screen Shot 2017-03-16 at 10.54.33 AM" translatesAutoresizingMaskIntoConstraints="NO" id="hcI-bN-IqW">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Screen Shot 2017-03-16 at 10.54.33 AM" translatesAutoresizingMaskIntoConstraints="NO" id="hcI-bN-IqW" customClass="CircleView" customModule="Barkd1" customModuleProvider="target">
                                                     <rect key="frame" x="8" y="12" width="50" height="50"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="50" id="JCs-cY-sbH"/>
@@ -856,6 +859,10 @@
                                                 <constraint firstItem="yWx-w7-Pb2" firstAttribute="top" secondItem="yg1-a4-Vzr" secondAttribute="topMargin" constant="19" id="rSO-eQ-Rff"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="userImage" destination="hcI-bN-IqW" id="uWh-lQ-MUt"/>
+                                            <outlet property="userName" destination="yWx-w7-Pb2" id="bMg-IN-iAb"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
