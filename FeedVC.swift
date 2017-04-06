@@ -47,6 +47,7 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UIIm
         showCurrentUser()
         loadUserInfo()
         fetchPosts()
+        printDisplay()
         
         tableView.delegate = self
         tableView.dataSource = self
@@ -62,6 +63,11 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UIIm
      
         
     } // End ViewDidLoad
+    
+    func printDisplay() {
+    let brian = FIRAuth.auth()?.currentUser?.displayName
+        print("BRIAN: You are \(brian)")
+        }
     
     func dismissKeyboard() {
         view.endEditing(true)
@@ -118,7 +124,6 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UIIm
     
         for (_, value) in users {
             if let uName = value["username"] as? String {
-                print("BRIAN: \(uName)")
                 self.userRef.observe(.value, with: { (snapshot) in
                     
                     let myUser = Users(snapshot: snapshot)
@@ -150,11 +155,13 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UIIm
 
                     if let postDict = snap.value as? Dictionary<String, AnyObject> {
                             print("POST: \(postDict)")
+                        if let postUser = postDict["postUser"] as? String {
+                        print("BRIAN: \(postUser)")
                         let key = snap.key
                         let post = Post(postKey: key, postData: postDict)
                         self.posts.append(post)
                         
-                        
+                        }
                     }
                 }
             }
