@@ -31,7 +31,7 @@ class CurrentUsersVC: UIViewController, UITableViewDelegate, UITableViewDataSour
             let users = snapshot.value as! [String: AnyObject]
             self.users.removeAll()
             for (_, value) in users {
-                if let uid = value["uid"] as? String {
+                if let uid = value["username"] as? String {
                     if uid != FIRAuth.auth()!.currentUser!.uid {
                         let userToShow = Friend()
                         if let username = value["username"] as? String, let imagePath = value["photoURL"] as? String {
@@ -52,6 +52,8 @@ class CurrentUsersVC: UIViewController, UITableViewDelegate, UITableViewDataSour
         
     }
     
+    // Do NOT modify the userID in these funcs //
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return users.count
     }
@@ -67,6 +69,8 @@ class CurrentUsersVC: UIViewController, UITableViewDelegate, UITableViewDataSour
         return cell
     }
     
+    //
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         let uid = FIRAuth.auth()!.currentUser!.uid
@@ -78,11 +82,11 @@ class CurrentUsersVC: UIViewController, UITableViewDelegate, UITableViewDataSour
         ref.child("users").child(uid).child("following").queryOrderedByKey().observeSingleEvent(of: .value, with: { snapshot in
             if let following = snapshot.value as? [String: AnyObject] {
                 for (ke, value) in following {
-                    if value as! String == self.users[indexPath.row].userID {
+                    if value as! String == self.users[indexPath.row].username {
                         isFollower = true
                         
                         ref.child("users").child(uid).child("following/\(ke)").removeValue()
-                        ref.child("users").child(self.users[indexPath.row].userID).child("followers/\(ke)").removeValue()
+                        ref.child("users").child(self.users[indexPath.row].username).child("followers/\(ke)").removeValue()
                         
                         
                         self.tableView.cellForRow(at: indexPath)?.accessoryType = .none
@@ -91,7 +95,7 @@ class CurrentUsersVC: UIViewController, UITableViewDelegate, UITableViewDataSour
             }
             
             if !isFollower {
-                let following = ["following/\(key)" : self.users[indexPath.row].userID]
+                let following = ["following/\(key)" : self.users[indexPath.row].username]
                 let followers = ["followers/\(key)" : uid]
                 
                 ref.child("users").child(uid).updateChildValues(following)
@@ -115,7 +119,7 @@ class CurrentUsersVC: UIViewController, UITableViewDelegate, UITableViewDataSour
         ref.child("users").child(uid).child("following").queryOrderedByKey().observeSingleEvent(of: .value, with: { snapshot in
             if let following = snapshot.value as? [String: AnyObject] {
                 for (_, value) in following {
-                    if value as! String == self.users[indexPath.row].userID {
+                    if value as! String == self.users[indexPath.row].username {
                         self.tableView.cellForRow(at: indexPath)?.accessoryType = .checkmark
                     }
                 }
