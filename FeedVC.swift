@@ -14,14 +14,14 @@ import SwiftKeychainWrapper
 import Foundation
 
 class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
-
+    
     
     // TO DO: Try using nil coelessing operator for if let statements concerning current username and e-mail address, profilePic & default picture
     
     
     // Issues with the ProfilePic - only loads properly sometimes, when going back from Profile screen DOES NOT load. When logging in initially, everything DOES load properly.
     
-    // Refactor this storage ref using DataService // 
+    // Refactor this storage ref using DataService //
     
     var posts = [Post]()
     static var imageCache: NSCache<NSString, UIImage> = NSCache()
@@ -45,9 +45,10 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UIIm
         super.viewDidLoad()
         
         showCurrentUser()
+        followingFriends()
         loadUserInfo()
         fetchPosts()
-        printDisplay()
+
         
         tableView.delegate = self
         tableView.dataSource = self
@@ -55,19 +56,15 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UIIm
         imagePicker = UIImagePickerController()
         imagePicker.delegate = self
         imagePicker.allowsEditing = true
-
+        
         
         // Dismiss Keyboard //
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(UIInputViewController.dismissKeyboard))
         view.addGestureRecognizer(tap)
-     
+        
         
     } // End ViewDidLoad
     
-    func printDisplay() {
-    let brian = FIRAuth.auth()?.currentUser?.displayName
-        print("BRIAN: You are \(brian)")
-        }
     
     func dismissKeyboard() {
         view.endEditing(true)
@@ -76,14 +73,13 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UIIm
     func showCurrentUser() {
         if FIRAuth.auth()?.currentUser != nil {
             print("BRIAN: There is somebody signed in!!!")
-//            loadUserInfo()
         } else {
             print("Aint nobody signed in!!!")
         }
     }
     
-  
-   func loadUserInfo(){
+    
+    func loadUserInfo(){
         userRef.observe(.value, with: { (snapshot) in
             
             let user = Users(snapshot: snapshot)
@@ -105,8 +101,8 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UIIm
             })
         }) { (error) in
             print(error.localizedDescription)
+        }
     }
-}
     
     /// Sort Feed of Posts by Current Date
     func sortDatesFor(this: Post, that: Post) -> Bool {
@@ -117,34 +113,36 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UIIm
     
     func followingFriends() {
         
-    let ref = FIRDatabase.database().reference()
-    ref.child("users").queryOrderedByKey().observeSingleEvent(of: .value, with: { snapshot in
-        
-        let users = snapshot.value as! [String: AnyObject]
-    
-        for (_, value) in users {
-            if let uName = value["username"] as? String {
-                self.userRef.observe(.value, with: { (snapshot) in
-                    
-                    let myUser = Users(snapshot: snapshot)
-
-                if uName == myUser.username {
-                    if let followingUsers = value["following"] as? [String: String] {
-                        for (_, user) in followingUsers {
-                            self.following.append(user)
-                    
+        let ref = FIRDatabase.database().reference()
+        ref.child("users").queryOrderedByKey().observeSingleEvent(of: .value, with: { snapshot in
+            
+            let users = snapshot.value as! [String: AnyObject]
+            
+            for (_, value) in users {
+                if let uName = value["username"] as? String {
+                    self.userRef.observe(.value, with: { (snapshot) in
+                        
+                        let myUser = Users(snapshot: snapshot)
+                        
+                        if uName == myUser.username {
+                            if let followingUsers = value["following"] as? [String: String] {
+                                for (_, user) in followingUsers {
+                                    self.following.append(user)
+                                    
+                                }
+                            }
+                            
+                            self.following.append((FIRAuth.auth()?.currentUser?.uid)!)
+                            print("BRIAN: You are following these users \(self.following)")
+                            
                         }
-                    }
-                    
-                    self.following.append((FIRAuth.auth()?.currentUser?.uid)!)
-                    print("BRIAN: You are following these users \(self.following)")
-                    
-                    }
-                })
+                    })
+                }
             }
-        }
-    })
-}
+            
+            self.fetchPosts()
+        })
+    }
     
     func fetchPosts() {
         DataService.ds.REF_POSTS.observe(.value, with: { (snapshot) in
@@ -152,16 +150,16 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UIIm
             if let snapshot = snapshot.children.allObjects as? [FIRDataSnapshot] {
                 for snap in snapshot {
                     print("SNAP: \(snap)")
-
+                    
                     if let postDict = snap.value as? Dictionary<String, AnyObject> {
-                            print("POST: \(postDict)")
-                        if let postUser = postDict["postUser"] as? String {
-                        print("BRIAN: \(postUser)")
-                        print("BRIAN: \(self.following)")
-                        let key = snap.key
-                        let post = Post(postKey: key, postData: postDict)
-                        self.posts.append(post)
-                        
+                        print("POST: \(postDict)")
+                        if let postUser = postDict["uid"] as? String {
+                            print("BRIAN: \(postUser)")
+                            print("BRIAN: ITS FULL FUCKERS! \(self.following)")
+                            let key = snap.key
+                            let post = Post(postKey: key, postData: postDict)
+                            self.posts.append(post)
+                            
                         }
                     }
                 }
@@ -169,7 +167,6 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UIIm
             
             self.tableView.reloadData()
             self.posts.sort(by: self.sortDatesFor)
-            self.followingFriends()
             
         })
         
@@ -199,8 +196,8 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UIIm
             
         }
     }
-
-
+    
+    
     // Configure Firebase Post //
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
@@ -267,27 +264,28 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UIIm
                         }
                         
                     }
-                        
-                }
                     
-            }
+                }
                 
+            }
+            
         }
     }
-        
-        func imagesForPost(imgUrl: String) -> String {
-            let mainImg = imgUrl
-            return mainImg
-        }
+    
+    func imagesForPost(imgUrl: String) -> String {
+        let mainImg = imgUrl
+        return mainImg
+    }
     
     // Retrieve the Current Date //
-
+    
     let realDate = DateFormatter.localizedString(from: NSDate() as Date, dateStyle: DateFormatter.Style.short, timeStyle: DateFormatter.Style.short)
-
+    
     // Posting to Firebase //
     
     func postToFirebase(imgUrl: String, imgUrlr: String) {
         
+        let uid = FIRAuth.auth()?.currentUser?.uid
         
         let post: Dictionary<String, Any> = [
             "caption": postCaption.text!,
@@ -295,7 +293,8 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UIIm
             "likes": 0,
             "postUser": currentUser.text!,
             "profilePicURL": imgUrlr,
-            "currentDate": realDate 
+            "currentDate": realDate,
+            "uid": uid!
         ]
         
         
@@ -307,12 +306,12 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UIIm
         userPost.image = UIImage(named: "add-image")
         
         self.tableView.reloadData()
-
+        
     }
-
-
+    
+    
     // Logging Out //
-
+    
     @IBAction func logOutPress(_ sender: Any) {
         let firebaseAuth = FIRAuth.auth()
         do {
