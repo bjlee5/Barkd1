@@ -58,6 +58,8 @@ class NewUserVC: UIViewController, UIImagePickerControllerDelegate, UINavigation
     
     // Creating a New User //
     
+    //TODO: There is no error handling if user does not select an image
+    
     @IBAction func createUserPress(_ sender: Any) {
         let username = usernameField.text
         let password = passwordField.text
@@ -72,22 +74,29 @@ class NewUserVC: UIViewController, UIImagePickerControllerDelegate, UINavigation
                 
             } else {
                 
+                let changeRequest = user?.profileChangeRequest()
+                changeRequest?.displayName = username
+                
+                changeRequest?.commitChanges(completion: { (error) in
+                    
+                    if error == nil {
+                
                 print("BRIAN: The user has been created.")
                 self.setUserInfo(user: user, email: email!, password: password!, username: username!, bio: bio!, proPic: pictureData as NSData!)
                 
+                    }
+                })
             }
         })
     }
-    
-    // TODO: We want the FIRUser to be reflected as a username 
     
     func setUserInfo(user: FIRUser!, email: String, password: String, username: String, bio: String, proPic: NSData!) {
         
         let imgUid = NSUUID().uuidString
         let metadata = FIRStorageMetadata()
         metadata.contentType = "image/jpeg"
+    
 
-        
         DataService.ds.REF_PRO_IMAGES.child(imgUid).put(proPic as Data, metadata: metadata) { (newMetaData, error) in
             
             if error != nil {
@@ -97,26 +106,29 @@ class NewUserVC: UIViewController, UIImagePickerControllerDelegate, UINavigation
             } else {
                 print("BRIAN: New metadata stuff's workin.")
                 
+
+                
                 let photoURL = newMetaData?.downloadURL()?.absoluteString
                 if let url = photoURL {
+                    
                  
                     self.saveUserInfo(user: user, username: username, password: password, bio: bio, image: url)
                     
                 }
-                
             }
         }
     }
+    
     
     // This is func completeSignInID.createFIRDBuser from SocialApp1. Instead of only providing "provider": user.providerID - there is additional information provided - for the username, profile pic, etc. We need to provide a place for this information to be input. //
     
     private func saveUserInfo(user: FIRUser!, username: String, password: String, bio: String, image: String) {
         
+        
         let userInfo = ["email": user.email!, "username": username , "uid": user.uid , "photoURL": image, "bio": bio, "provider": user.providerID]
         
         self.completeSignIn(id: user.uid, userData: userInfo)
         print("BRIAN: User info has been saved to the database")
-        
         
     }
     
