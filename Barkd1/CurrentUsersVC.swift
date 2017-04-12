@@ -69,8 +69,6 @@ class CurrentUsersVC: UIViewController, UITableViewDelegate, UITableViewDataSour
         return cell
     }
     
-    //
-    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         let uid = FIRAuth.auth()!.currentUser!.uid
@@ -82,7 +80,7 @@ class CurrentUsersVC: UIViewController, UITableViewDelegate, UITableViewDataSour
         ref.child("users").child(uid).child("following").queryOrderedByKey().observeSingleEvent(of: .value, with: { snapshot in
             if let following = snapshot.value as? [String: AnyObject] {
                 for (ke, value) in following {
-                    if value as! String == self.users[indexPath.row].username {
+                    if value as! String == self.users[indexPath.row].userID {
                         isFollower = true
                         
                         ref.child("users").child(uid).child("following/\(ke)").removeValue()

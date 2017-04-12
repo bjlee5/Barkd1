@@ -156,9 +156,12 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UIIm
                         if let postUser = postDict["uid"] as? String {
                             print("BRIAN: \(postUser)")
                             print("BRIAN: ITS FULL FUCKERS! \(self.following)")
+                            if self.following.contains(postUser) {
+                                
                             let key = snap.key
                             let post = Post(postKey: key, postData: postDict)
                             self.posts.append(post)
+                            
                             
                         }
                     }
@@ -167,9 +170,9 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UIIm
             
             self.tableView.reloadData()
             self.posts.sort(by: self.sortDatesFor)
-            
+            }
         })
-        
+    
     }
     
     // User Feed //
