@@ -24,6 +24,7 @@ class CurrentUsersVC: UIViewController, UITableViewDelegate, UITableViewDataSour
         
     }
     
+    /// This is retrieving users information 
     func retrieveUser() {
         let ref = FIRDatabase.database().reference()
         ref.child("users").queryOrderedByKey().observeSingleEvent(of: .value, with: { snapshot in
@@ -96,7 +97,7 @@ class CurrentUsersVC: UIViewController, UITableViewDelegate, UITableViewDataSour
             
             if !isFollower {
                 let following = ["following/\(key)" : self.users[indexPath.row].username]
-                let followers = ["followers/\(key)" : uid]
+                let followers = ["followers/\(key)" : self.users[indexPath.row].username]
                 
                 ref.child("users").child(uid).updateChildValues(following)
                 ref.child("users").child(self.users[indexPath.row].username).updateChildValues(followers)

@@ -79,6 +79,8 @@ class NewUserVC: UIViewController, UIImagePickerControllerDelegate, UINavigation
         })
     }
     
+    // TODO: We want the FIRUser to be reflected as a username 
+    
     func setUserInfo(user: FIRUser!, email: String, password: String, username: String, bio: String, proPic: NSData!) {
         
         let imgUid = NSUUID().uuidString
