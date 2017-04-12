@@ -157,6 +157,7 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UIIm
                             print("POST: \(postDict)")
                         if let postUser = postDict["postUser"] as? String {
                         print("BRIAN: \(postUser)")
+                        print("BRIAN: \(self.following)")
                         let key = snap.key
                         let post = Post(postKey: key, postData: postDict)
                         self.posts.append(post)
