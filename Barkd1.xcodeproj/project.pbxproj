@@ -12,6 +12,7 @@
 		D061A7091E7DDA3F00C18581 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = D061A7081E7DDA3F00C18581 /* Post.swift */; };
 		D064B6101E932536008C212C /* CurrentUsersVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D064B60F1E932536008C212C /* CurrentUsersVC.swift */; };
 		D064B6121E94723D008C212C /* Friend.swift in Sources */ = {isa = PBXBuildFile; fileRef = D064B6111E94723D008C212C /* Friend.swift */; };
+		D095D0DF1E9F9E4E0088CA21 /* FriendsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D095D0DE1E9F9E4E0088CA21 /* FriendsVC.swift */; };
 		D0B3FE591E7C242200D5BF86 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0B3FE581E7C242200D5BF86 /* AppDelegate.swift */; };
 		D0B3FE5B1E7C242200D5BF86 /* LogInVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0B3FE5A1E7C242200D5BF86 /* LogInVC.swift */; };
 		D0B3FE5E1E7C242200D5BF86 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D0B3FE5C1E7C242200D5BF86 /* Main.storyboard */; };
@@ -41,6 +42,7 @@
 		D061A7081E7DDA3F00C18581 /* Post.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 		D064B60F1E932536008C212C /* CurrentUsersVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CurrentUsersVC.swift; sourceTree = "<group>"; };
 		D064B6111E94723D008C212C /* Friend.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Friend.swift; sourceTree = "<group>"; };
+		D095D0DE1E9F9E4E0088CA21 /* FriendsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendsVC.swift; sourceTree = "<group>"; };
 		D0B3FE551E7C242200D5BF86 /* Barkd1.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Barkd1.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D0B3FE581E7C242200D5BF86 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D0B3FE5A1E7C242200D5BF86 /* LogInVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInVC.swift; sourceTree = "<group>"; };
@@ -138,6 +140,7 @@
 				D0B3FE761E7C24CA00D5BF86 /* NewUserVC.swift */,
 				D0B3FE7E1E7C4AE600D5BF86 /* ProfileVC.swift */,
 				D064B60F1E932536008C212C /* CurrentUsersVC.swift */,
+				D095D0DE1E9F9E4E0088CA21 /* FriendsVC.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -320,6 +323,7 @@
 				D0B3FE611E7C242200D5BF86 /* Barkd1.xcdatamodeld in Sources */,
 				D0B3FE7F1E7C4AE600D5BF86 /* ProfileVC.swift in Sources */,
 				D0C413C51E8320EF00A6AA24 /* CircleView.swift in Sources */,
+				D095D0DF1E9F9E4E0088CA21 /* FriendsVC.swift in Sources */,
 				D0B3FE811E7C53D600D5BF86 /* User.swift in Sources */,
 				D0BEB0521E855B4100685D60 /* UserCell.swift in Sources */,
 				D0B3FE5B1E7C242200D5BF86 /* LogInVC.swift in Sources */,

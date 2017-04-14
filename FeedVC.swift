@@ -154,8 +154,6 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UIIm
                     if let postDict = snap.value as? Dictionary<String, AnyObject> {
                         print("POST: \(postDict)")
                         if let postUser = postDict["uid"] as? String {
-                            print("BRIAN: \(postUser)")
-                            print("BRIAN: ITS FULL FUCKERS! \(self.following)")
                             if self.following.contains(postUser) {
                                 
                             let key = snap.key

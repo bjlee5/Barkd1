@@ -13,7 +13,7 @@ class UserCell: UITableViewCell {
     
     var userID: String!
     
-    @IBOutlet weak var userImage: UIImageView!
+//    @IBOutlet weak var userImage: UIImageView!
     @IBOutlet weak var userName: UILabel!
     
 }

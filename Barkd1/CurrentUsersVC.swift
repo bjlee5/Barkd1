@@ -9,9 +9,13 @@
 import UIKit
 import Firebase 
 
-class CurrentUsersVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class CurrentUsersVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchResultsUpdating {
 
     var users = [Friend]()
+    let searchController = UISearchController(searchResultsController: nil)
+    
+    var userArray = [NSDictionary?]()
+    var filteredUsers = [NSDictionary?]()
     
     @IBOutlet weak var tableView: UITableView!
     
@@ -21,6 +25,21 @@ class CurrentUsersVC: UIViewController, UITableViewDelegate, UITableViewDataSour
         tableView.delegate = self
         tableView.dataSource = self
         retrieveUser()
+        
+        searchController.searchResultsUpdater = self
+        searchController.dimsBackgroundDuringPresentation = false
+        definesPresentationContext = true
+        tableView.tableHeaderView = searchController.searchBar
+        
+//        DataService.ds.REF_USERS.queryOrdered(byChild: "username").observe(.childAdded, with: { (snapshot) in
+//            
+//            self.userArray.append(snapshot.value as? NSDictionary)
+//            
+//            // Insert Rows
+//            
+//        }) { (error) in
+//            print(error.localizedDescription)
+//        }
         
     }
     
@@ -63,7 +82,7 @@ class CurrentUsersVC: UIViewController, UITableViewDelegate, UITableViewDataSour
         
         cell.userName.text = users[indexPath.row].username
         cell.userID = users[indexPath.row].userID
-        cell.userImage.downloadImage(from: self.users[indexPath.row].imagePath!)
+//        cell.userImage.downloadImage(from: self.users[indexPath.row].imagePath!)
         checkFollowing(indexPath: indexPath)
         
         return cell
@@ -128,6 +147,11 @@ class CurrentUsersVC: UIViewController, UITableViewDelegate, UITableViewDataSour
         
     }
     
+    func updateSearchResults(for searchController: UISearchController) {
+            // Update search results
+
+    }
+    
     @IBAction func backPress(_ sender: Any) {
         dismiss(animated: true, completion: nil)
     }
@@ -135,25 +159,25 @@ class CurrentUsersVC: UIViewController, UITableViewDelegate, UITableViewDataSour
     
 }
 
-extension UIImageView {
-    
-    func downloadImage(from imageURL: String!) {
-        let url = URLRequest(url: URL(string: imageURL)!)
-        
-        let task = URLSession.shared.dataTask(with: url) { (data, response, error) in
-            
-            if error != nil {
-                print(error!)
-                return
-            }
-            DispatchQueue.main.async {
-                self.image = UIImage(data: data!)
-                
-            }
-        }
-        
-        task.resume()
-        
-    }
-    
-}
+//extension UIImageView {
+//    
+//    func downloadImage(from imageURL: String!) {
+//        let url = URLRequest(url: URL(string: imageURL)!)
+//        
+//        let task = URLSession.shared.dataTask(with: url) { (data, response, error) in
+//            
+//            if error != nil {
+//                print(error!)
+//                return
+//            }
+//            DispatchQueue.main.async {
+//                self.image = UIImage(data: data!)
+//                
+//            }
+//        }
+//        
+//        task.resume()
+//        
+//    }
+//    
+//}
