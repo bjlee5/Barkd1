@@ -12,6 +12,7 @@
 		D061A7091E7DDA3F00C18581 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = D061A7081E7DDA3F00C18581 /* Post.swift */; };
 		D064B6101E932536008C212C /* CurrentUsersVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D064B60F1E932536008C212C /* CurrentUsersVC.swift */; };
 		D064B6121E94723D008C212C /* Friend.swift in Sources */ = {isa = PBXBuildFile; fileRef = D064B6111E94723D008C212C /* Friend.swift */; };
+		D065040C1EA11C9000BC04F7 /* EditProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D065040B1EA11C9000BC04F7 /* EditProfileVC.swift */; };
 		D095D0DF1E9F9E4E0088CA21 /* FriendsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D095D0DE1E9F9E4E0088CA21 /* FriendsVC.swift */; };
 		D0B3FE591E7C242200D5BF86 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0B3FE581E7C242200D5BF86 /* AppDelegate.swift */; };
 		D0B3FE5B1E7C242200D5BF86 /* LogInVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0B3FE5A1E7C242200D5BF86 /* LogInVC.swift */; };
@@ -42,6 +43,7 @@
 		D061A7081E7DDA3F00C18581 /* Post.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 		D064B60F1E932536008C212C /* CurrentUsersVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CurrentUsersVC.swift; sourceTree = "<group>"; };
 		D064B6111E94723D008C212C /* Friend.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Friend.swift; sourceTree = "<group>"; };
+		D065040B1EA11C9000BC04F7 /* EditProfileVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditProfileVC.swift; sourceTree = "<group>"; };
 		D095D0DE1E9F9E4E0088CA21 /* FriendsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendsVC.swift; sourceTree = "<group>"; };
 		D0B3FE551E7C242200D5BF86 /* Barkd1.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Barkd1.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D0B3FE581E7C242200D5BF86 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -141,6 +143,7 @@
 				D0B3FE7E1E7C4AE600D5BF86 /* ProfileVC.swift */,
 				D064B60F1E932536008C212C /* CurrentUsersVC.swift */,
 				D095D0DE1E9F9E4E0088CA21 /* FriendsVC.swift */,
+				D065040B1EA11C9000BC04F7 /* EditProfileVC.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -313,6 +316,7 @@
 				D064B6101E932536008C212C /* CurrentUsersVC.swift in Sources */,
 				D0B3FE771E7C24CA00D5BF86 /* NewUserVC.swift in Sources */,
 				D061A7091E7DDA3F00C18581 /* Post.swift in Sources */,
+				D065040C1EA11C9000BC04F7 /* EditProfileVC.swift in Sources */,
 				D0B3FE7B1E7C250800D5BF86 /* DataService.swift in Sources */,
 				D0C413C91E83217500A6AA24 /* SexyField.swift in Sources */,
 				D064B6121E94723D008C212C /* Friend.swift in Sources */,

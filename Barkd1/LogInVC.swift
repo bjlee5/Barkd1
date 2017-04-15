@@ -115,14 +115,16 @@ class LogInVC: UIViewController {
                 print("BRIAN: Succesfully autheticated with Facebook")
                 let credential = FIRFacebookAuthProvider.credential(withAccessToken: FBSDKAccessToken.current().tokenString)
                 self.firebaseAuth(credential)
+                
             }
-            
         }
     }
     
     @IBAction func createPress(_ sender: Any) {
         performSegue(withIdentifier: "NewUserVC", sender: self)
     }
+    
+    // Add Logic here for the Facebook users - if provider is Facebook and username == nil then reroute to editProfile VC... would then need to add logic to support blank username, pic, etc there...
     
     func completeSignIn(id: String, userData: Dictionary<String, String>) {
         DataService.ds.createFirebaseDBUser(uid: id, userData: userData)

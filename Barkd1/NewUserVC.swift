@@ -58,7 +58,7 @@ class NewUserVC: UIViewController, UIImagePickerControllerDelegate, UINavigation
     
     // Creating a New User //
     
-    //TODO: There is no error handling if user does not select an image
+    //TODO: THERE IS NO ERROR HANDLING HERE
     
     @IBAction func createUserPress(_ sender: Any) {
         let username = usernameField.text
@@ -74,20 +74,12 @@ class NewUserVC: UIViewController, UIImagePickerControllerDelegate, UINavigation
                 
             } else {
                 
-                let changeRequest = user?.profileChangeRequest()
-                changeRequest?.displayName = username
-                
-                changeRequest?.commitChanges(completion: { (error) in
-                    
-                    if error == nil {
-                
                 print("BRIAN: The user has been created.")
                 self.setUserInfo(user: user, email: email!, password: password!, username: username!, bio: bio!, proPic: pictureData as NSData!)
                 
                     }
                 })
-            }
-        })
+
     }
     
     func setUserInfo(user: FIRUser!, email: String, password: String, username: String, bio: String, proPic: NSData!) {
